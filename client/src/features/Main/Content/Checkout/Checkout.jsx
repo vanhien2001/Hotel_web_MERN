@@ -13,7 +13,7 @@ import styles from "./Checkout.module.scss";
 
 const Checkout = () => {
 
-    const { bookingForm } = useStore();
+    const { bookingForm, setbookingForm } = useStore();
     const dispatch = useDispatch();
     const history = useHistory();
     const { bookingLoading } = useSelector(bookingSelector);
@@ -30,6 +30,10 @@ const Checkout = () => {
                     : true,
         })).then((data) => {
             if (data.payload.success) {
+                setbookingForm({
+                    ...bookingForm,
+                    payment
+                })
                 history.push("thankyou");
             }
         });

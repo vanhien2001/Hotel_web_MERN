@@ -1,7 +1,6 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch, useParams, useHistory, useLocation } from "react-router-dom";
-import queryString from 'query-string';
+import { Route, Switch, useParams } from "react-router-dom";
 import Slidebar from "./SlideBar/Slidebar";
 import Slidebar2 from "./SlideBar/Slidebar2";
 import RoomCart from "./Content/RoomCart/RoomCart";
@@ -21,7 +20,6 @@ import Pages from "./Pages/Pages";
 import Contact from "./Contact/Contact";
 import User from './/User/User';
 import PageNotFound from "../../components/PageNotFound/PageNotFound";
-import { getAll as getAllRoom } from "../../store/reducer/roomSlice";
 import { load, userSelector } from "../../store/reducer/userSlice";
 
 const Context = createContext();
@@ -31,25 +29,26 @@ export const useStore = () => {
 
 const Content = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
-    const location = useLocation();
     const { user } = useSelector(userSelector);
     const { slug } = useParams();
 
-    const limitRoom = 4;
     let numberDay;
     let body;
 
-    const [bookingForm, setbookingForm] = useState(null);
-    const [viewGrid, setViewGrid] = useState(true);
-    let [filter, setFilter] = useState({
-        services: [],
-        price: 300,
-        sort: null,
-        skip: 1,
-        limit: limitRoom,
+    const [bookingForm, setbookingForm] = useState(() => {
+        const date = new Date();
+        date.setDate(date.getDate() + 1);
+        return {
+            room: "",
+            services: [],
+            arrive: new Date(),
+            depart: date,
+            guests: 1,
+            totalPrice: 0
+        }
     });
-    
+    const [viewGrid, setViewGrid] = useState(true);
+    let [filter, setFilter] = useState({});
     const serviceChoose = (e) => {
         if (e.target.checked) {
             filter.services.push(e.target.value);
@@ -85,49 +84,37 @@ const Content = () => {
         setbookingForm,
         serviceChoose
     }
-
+    
+    const [skipRender, setSkipRender] = useState(true)
     useEffect(() => {
-        dispatch(getAllRoom(filter));
-        history.push({
-            search: queryString.stringify(filter)
-        })
-    }, [filter]);
-
-    useEffect(() => {
-        const date = new Date();
-        date.setDate(date.getDate() + 1);
-        setbookingForm({
-            firstname: user ? user.firstname : "",
-            lastname: user ? user.lastname : "",
-            gender: user ? user.gender : "male",
-            phone: user ? user.phone : "",
-            cmnd: user ? user.cmnd : "",
-            email: user ? user.email : "",
-            address: user ? user.address : "",
-            room: "",
-            services: [],
-            arrive: new Date(),
-            depart: date,
-            guests: 1,
-            totalPrice: 0,
-        });
+        if(!skipRender){
+            setbookingForm({
+                ...bookingForm,
+                firstname: user ? user.firstname : "",
+                lastname: user ? user.lastname : "",
+                gender: user ? user.gender : "male",
+                phone: user ? user.phone : "",
+                cmnd: user ? user.cmnd : "",
+                email: user ? user.email : "",
+                address: user ? user.address : "",
+            });
+        }
     }, [user]);
 
     useEffect(() => {
-        setFilter({
-            ...filter,
-            arrive: bookingForm ? bookingForm.arrive : null,
-            depart: bookingForm ? bookingForm.depart : null
-        })
-    }, [bookingForm]);
+        if(skipRender){
+            setSkipRender(false);
+        }else{
+            setFilter({
+                ...filter,
+                arrive: bookingForm ? bookingForm.arrive : null,
+                depart: bookingForm ? bookingForm.depart : null
+            })
+        }
+    }, [bookingForm.arrive, bookingForm.depart]);
 
     useEffect(() => {
         dispatch(load());
-        console.log(queryString.parse(location.search))
-        setFilter({
-            services: [],
-            ...queryString.parse(location.search)
-        })
     }, []);
 
     if (["room", "booking", "checkout", "thankyou", 'login', 'register', 'home','detail','about','pages','news','contact','account'].includes(slug)) {

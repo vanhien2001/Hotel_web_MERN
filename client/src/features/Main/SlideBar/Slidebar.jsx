@@ -41,6 +41,7 @@ const Slidebar = () => {
                             id={service._id}
                             value={service._id}
                             onClick={(e) => serviceChoose(e)}
+                            checked={filter.services && filter.services.includes(service._id)}
                         />
                         <label htmlFor={service._id}>{service.name}</label>
                     </div>

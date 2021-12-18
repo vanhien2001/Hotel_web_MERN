@@ -161,7 +161,7 @@ class RoomController {
                 quantity = (await Room.aggregate(aggregate)).length
             }
             const rooms = await Room.aggregate(aggregate)
-            res.json({ success: true, rooms, quantity})
+            res.json({ success: true, rooms, quantity })
         } catch (error) {
             res.status(500).json({ success: false, messages: 'Interval server error' })
         }

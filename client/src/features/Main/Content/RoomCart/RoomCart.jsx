@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import queryString from 'query-string';
 import { roomSelector, getAll, setRoom } from '../../../../store/reducer/roomSlice';
 import Loading from '../../../../components/Loading/Loading';
 import { useStore } from "../../Content";
@@ -8,11 +9,12 @@ import styles from "./RoomCart.module.scss";
 
 
 const RoomCart = () => {
-
-    const { viewGrid, filter, setFilter } = useStore();
+    const { viewGrid, filter, setFilter, bookingForm, setbookingForm } = useStore();
     const history = useHistory()
+    const location = useLocation()
     const dispatch = useDispatch()
     const { roomLoading, rooms, quantity } = useSelector(roomSelector)
+    const [skip, setSkip] = useState(1)
 
     const showDetail = (e, room) => {
         e.preventDefault()
@@ -80,6 +82,62 @@ const RoomCart = () => {
             )
         }
     }
+    useEffect(() => {
+        if(location.search){
+            const filterA = queryString.parse(location.search,{
+                arrayFormat: 'bracket-separator', 
+                arrayFormatSeparator: '|'
+            })
+            setFilter({
+                price: parseInt(filterA.price),
+                skip: parseInt(filterA.skip),
+                limit: parseInt(filterA.limit),
+                services: filterA.services || [],
+                sort: filterA ? JSON.parse(filterA.sort ? filterA.sort[0] : null) : null,
+            })
+            setbookingForm({
+                ...bookingForm,
+                arrive: new Date(parseInt(filterA.arrive)),
+                depart: new Date(parseInt(filterA.depart))
+            })
+        }else{
+            setFilter(() => {
+                const date = new Date();
+                date.setDate(date.getDate() + 1);
+                return {
+                    services: [],
+                    price: 300,
+                    sort: null,
+                    skip: 1,
+                    limit: 4,
+                    arrive: new Date(),
+                    depart: date
+                }
+            })
+        }
+        return history.push({
+            search: null
+        })
+    }, []);
+    useEffect(() => {
+        dispatch(getAll(filter));
+        if(skip === 3){
+            history.push({
+                search: queryString.stringify({
+                    ...filter,
+                    sort: filter.sort ? [JSON.stringify(filter.sort)] : null,
+                    arrive: filter.arrive ? filter.arrive.getTime() : null,
+                    depart: filter.depart ? filter.depart.getTime() : null
+                },{
+                    arrayFormat: 'bracket-separator', 
+                    arrayFormatSeparator: '|',
+                    skipNull: true
+                })
+            })
+        }else{
+            setSkip(skip+1)
+        }
+    }, [filter]);
 
     return (
         <>

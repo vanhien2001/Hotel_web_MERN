@@ -14,7 +14,7 @@ const registeSchema = Joi.object({
 
 const loginSchema = Joi.object({
     username: Joi.string().required(),
-    password: Joi.string().min(6).required(),
+    password: Joi.string().required(),
 })
 
 const registerValidator = (data) => {
