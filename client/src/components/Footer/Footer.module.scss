@@ -1,0 +1,107 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+
+.footer {
+    background-color: $primary_color;
+    padding: 50px 0 0;
+    font-weight: 300;
+    .footerItem {
+        margin-bottom: 50px;
+        .text {
+            font-size: 1.8rem;
+            color: #fff;
+        }
+        .subtext {
+            font-size: 1.4rem;
+            color: $font_color;
+            margin: 5px 0 25px;
+        }
+        .icon {
+            i {
+                margin-right: 20px;
+                font-size: 1.8rem;
+                color: #fff;
+            }
+        }
+        .email {
+            input{
+                width: 250px;
+                font-size: 1.4rem;
+                outline: none;
+                border: none;
+                padding: 10px 20px;
+                color: $font_color;
+                background-color: #151516;
+            }
+            button{
+                background-color: $secondary_color;
+                padding: 10px 30px;
+                font-size: 1.4rem;
+                color: #fff;
+                outline: none;
+                border: none;
+            }
+        }
+    }
+    .footerBar{
+        background-color: #151516;
+        padding: 10px 0;
+        .footerBarContainer{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            .footerList{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .item{
+                    a{
+                        text-decoration: none;
+                        color: #fff;
+                        font-size: 1.4rem;
+                        margin-right: 30px;
+                    }
+                }
+            }
+            .img{
+                height: 70px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 739px) {
+    .footerItem{
+        text-align: center;
+        button{
+            width: 250px;
+        }
+    }
+    .footerBarContainer{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .footerList{
+            a{
+                font-size: 1.3rem !important;
+                margin: 0 10px !important;
+            }
+        }
+        .img{
+            padding: 10px 0;
+            height: unset !important; 
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (min-width: 740px) and (max-width: 1023px) {
+    
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1239px) {
+
+}

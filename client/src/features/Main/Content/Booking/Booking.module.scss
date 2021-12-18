@@ -1,0 +1,131 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+
+.bookingContainer{
+    .notify{
+        background-color: $secondary_color;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+    .serviceContainer{
+        padding-bottom: 50px;
+        font-size: 1.6rem;
+        border-bottom: 1px solid rgba(193, 155, 119, 0.2);
+        .title{
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+        .serviceItem{
+            color: $font_color;
+            input[type="checkbox"]{
+                margin-right: 10px; 
+            }
+            margin-bottom: 10px;
+            label{
+                span{
+                    color: black;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+    form{
+        color: $font_color;
+        margin: 50px 0;
+        font-size: 1.6rem;
+        .title{
+            color: $primary_color;
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+        .formGroup{
+            margin-bottom: 20px;
+            label{
+                display: block;
+                margin-bottom: 5px;
+            }
+            input, select{
+                width: 100%;
+                background-color:#f9f9f9;
+                outline: none;
+                border: none;
+                padding: 10px 20px;
+            }
+            &.last{
+                label{
+                    display: inline-block;
+                }
+                input{
+                    width: auto;
+                    margin-right: 10px;
+                }
+                button{
+                    color: #fff;
+                    margin: 20px 0;
+                    outline: none;
+                    border: none;
+                    display: block;
+                    background-color: $secondary_color;
+                    padding: 15px 30px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 739px) {
+    .bookingContainer{
+        .notify{
+            font-size: 1.2rem;
+            margin: 20px 0;
+        }
+        .serviceContainer{
+            margin-top: 50px;
+            padding: 0 20px 50px;
+            .title{
+                font-size: 2.5rem;
+                text-align: center;
+            }
+            .serviceItem{
+                input[type="checkbox"]{
+                    margin-right: 5px; 
+                }
+                label{
+                    font-size: 1.4rem;
+                    span{
+                        margin-right: 5px;
+                    }
+                }
+            }
+        }
+        form{
+            color: $font_color;
+            margin: 50px 0 0;
+            font-size: 1.6rem;
+            padding: 0 20px;
+            .title{
+                text-align: center;
+                font-size: 2.5rem;
+            }
+            .formGroup{
+                &.last{
+                    text-align: center;
+                    label{
+                        display: inline-block;
+                    }
+                    input{
+                        width: auto;
+                        margin-right: 10px;
+                    }
+                    button{
+                        margin: 20px auto;
+                    }
+                }
+            }
+        }
+    }
+}

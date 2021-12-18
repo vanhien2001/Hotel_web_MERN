@@ -1,0 +1,124 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+$theme_color: #1a202e;
+$background_color: #232b3e;
+$btn_color: #3f51b5;
+
+.setting {
+    &.light {
+        color: #232b3e;
+        background-color: #fff;
+        .setting_item {
+            .setting_name {
+                border-color: #232b3e;
+            }
+        }
+    }
+    position: relative;
+    width: 16.66667%;
+    background-color: $theme_color;
+    position: fixed;
+    transform: translateX(100%);
+    right: 0;
+    top: 70px;
+    padding: 24px;
+    font-size: 1.6rem;
+    transition: all 0.3s linear;
+    z-index: 99;
+    &.open {
+        transform: translateX(0);
+    }
+    .btnClose {
+        position: absolute;
+        right: 25px;
+        top: 15px;
+        font-size: 2rem;
+        cursor: pointer;
+    }
+    .settingItem {
+        margin-bottom: 20px;
+        .setting_name {
+            border-bottom: 1px solid #fff;
+            margin-bottom: 20px;
+        }
+        .settingDetail {
+            font-size: 1.4rem;
+            input[type="checkbox"] {
+                margin-right: 10px;
+            }
+            button {
+                cursor: pointer;
+                padding: 8px 15px;
+                outline: none;
+                border: none;
+                border-radius: 0;
+                transition: all 0.3s linear;
+                &.active {
+                    background-color: #6e68c1;
+                    color: #fff;
+                }
+            }
+            progress {
+                display: block;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            .colorList {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                .color {
+                    height: 25px;
+                    width: 25px;
+                    line-height: 25px;
+                    text-align: center;
+                    border-radius: 2px;
+                    margin-right: 10px;
+                    margin-bottom: 10px;
+                    cursor: pointer;
+                    color: #fff;
+                    i {
+                        display: none;
+                    }
+                    &.active {
+                        i {
+                            display: inline;
+                        }
+                    }
+                    &:nth-child(1) {
+                        border: 1px solid #1a202e;
+                        background-color: #fff;
+                        i {
+                            color: black;
+                        }
+                    }
+                    &:nth-child(2) {
+                        background-color: #3a3f51;
+                    }
+                    &:nth-child(3) {
+                        background-color: #813ae1;
+                    }
+                    &:nth-child(4) {
+                        background-color: #03a9f3;
+                    }
+                    &:nth-child(5) {
+                        background-color: #13d1d3;
+                    }
+                    &:nth-child(6) {
+                        background-color: #13b464;
+                    }
+                    &:nth-child(7) {
+                        background-color: #f06533;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 739px) {
+    .setting {
+        width: 65%;
+    }
+}

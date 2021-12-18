@@ -1,0 +1,61 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+$theme_color: #1a202e;
+$background_color: #232b3e;
+$btn_color: #3f51b5;
+
+.content {
+    color: #96a2b4;
+    margin: 0;
+    transition: all 0.3s linear;
+    &.light {
+        color: #232b3e;
+        .header {
+            span {
+                border-color:#232b3e;
+            }
+            .link {
+                color: #26bed6;
+                &.icon {
+                    color: #232b3e;
+                }
+            }
+        }
+    }
+    .header {
+        margin-bottom: 50px;
+        font-size: 1.8rem;
+        span {
+            font-size: 2.2rem;
+            font-weight: bold;
+            padding-right: 10px;
+            border-right: 1px solid #96a2b4;
+        }
+        a {
+            margin: 0 10px;
+        }
+        .link {
+            font-size: 1.6rem;
+            text-decoration: none;
+            color: #4c7ebc;
+            &.icon {
+                color: #96a2b4;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 739px) {
+    .content {
+        .header {
+            span {
+                display: block;
+                border-right: none;
+            }
+        }
+        .body{
+            overflow-x: scroll;
+        }
+    }
+}

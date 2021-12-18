@@ -1,0 +1,80 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+$theme_color: #1a202e;
+$background_color: #232b3e;
+$btn_color: #3f51b5;
+
+.modal{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inset: 0;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.3);
+    .modalContainer{
+        position: relative;
+        width: 300px;
+        background-color: $background-color;
+        text-align: center;
+        padding: 30px;
+        border-radius: 10px;
+        &.light {
+            background-color: #fff;
+            color: $theme_color;
+            .icon{
+                i{
+                    font-size: 12rem;
+                }
+            }
+        }
+        .btnClose {
+            position: absolute;
+            right: 25px;
+            top: 15px;
+            font-size: 2.5rem;
+            cursor: pointer;
+            opacity: 0.8;
+                &:hover{
+                    opacity: 1;
+                }
+        }
+        .title{
+            font-size: 3rem;
+            margin: 20px 0;
+        }
+        .icon{
+            i{
+                font-size: 12rem;
+                color: rgb(214, 29, 29);
+            }
+        }
+        .text{
+
+        }
+        .btnContainer{
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .btn{
+                color: #fff;
+                outline: none;
+                border: none;
+                border-radius: 5px;
+                padding: 10px 20px;
+                background-color: $btn_color;
+                opacity: 0.8;
+                cursor: pointer;
+                width: 45%;
+                &:hover{
+                    opacity: 1;
+                }
+                &:first-child{
+                    background-color: rgb(214, 29, 29);
+                }
+            }
+        }
+    }
+}

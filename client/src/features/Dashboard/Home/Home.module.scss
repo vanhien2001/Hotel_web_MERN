@@ -1,0 +1,113 @@
+$theme_color: #1a202e;
+$background_color: #232b3e;
+$btn_color: #3f51b5;
+
+.home {
+    &.light {
+        .cartList{
+            .cartItem {
+                background-color: #fff;
+            }
+        }
+    }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 50px;
+        .title {
+            font-size: 2rem;
+            .text {
+                font-size: 2.2rem;
+                font-weight: bold;
+            }
+        }
+        .infor {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .inforItem {
+                margin-left: 40px;
+                .inforItemName {
+                    font-size: 1.6rem;
+                    margin-bottom: 10px;
+                }
+                .inforItemIcon {
+                    i {
+                        margin-right: 5px;
+                    }
+                }
+            }
+        }
+    }
+    .cartList {
+        .cartItem {
+            background-color: $theme_color;
+            padding: 15px;
+            border-radius: 10px;
+            transition: all 0.3s linear;
+            .detail {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+                .icon {
+                    text-align: center;
+                    height: 50px;
+                    width: 50px;
+                    line-height: 50px;
+                    color: #fff;
+                    border-radius: 10px;
+                }
+                .value {
+                    text-align: center;
+                    font-size: 2.5rem;
+                    font-weight: bold;
+                }
+            }
+            progress {
+                width: 100%;
+            }
+        }
+        .chart {
+            margin-top: 50px;
+        }
+    }
+}
+
+@media screen and (max-width: 739px) {
+    .home {
+        .header {
+            flex-direction: column;
+            .title {
+                width: 100%;
+                text-align: left;
+            }
+            .infor {
+                width: 100%;
+                .inforItem {
+                    margin-left: 0px;
+                    margin-top: 20px;
+                    .inforItemName {
+                        font-size: 1.6rem;
+                        margin-bottom: 10px;
+                    }
+                    .inforItemIcon {
+                        i {
+                            font-size: 1.6rem;
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+        }
+        .cartList {
+            .cartItem {
+                margin-bottom: 20px;
+            }
+            .chart {
+                margin: 20px 0;
+            }
+        }
+    }
+}

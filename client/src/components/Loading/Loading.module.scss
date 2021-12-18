@@ -1,0 +1,57 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+
+.loaderContainer{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    z-index: 99;
+    .loader{
+        position: relative;
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        &:before {
+            content: '';
+            position: absolute;
+            height: 50%;
+            top: 0;
+            right: 0;
+            left: 0;
+            background-color: $secondary_color;
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+            animation: rotate 1s linear infinite;
+            transform-origin: bottom center;
+        }
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 5px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+    }
+    &.darkTheme{
+        inset: 10px;
+        background-color: #232b3e;
+        .loader{
+            &::after {
+                background-color: #232b3e;
+            }
+        }
+    }
+}
+
+@keyframes rotate {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}

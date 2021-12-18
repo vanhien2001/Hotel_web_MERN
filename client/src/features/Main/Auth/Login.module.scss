@@ -1,0 +1,76 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+
+.formContainer{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.8em;
+    padding: 20px;
+    margin: 0 auto;
+    width: 40%;
+    color: $font_color;
+    border: 1px solid rgba(193, 155, 119, 0.1);
+    .title{
+        margin: 20px 0;
+        color: $primary_color;
+        font-size: 3rem;
+        text-align: center;
+    }
+    .notify{
+        font-size: 1.4rem;
+        padding: 5px 0;
+        margin-bottom: 20px;
+        background-color: rgba(255, 0, 0, 0.6);
+        text-align: center;
+        color: #fff;
+    }
+    .formGroup{
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0;
+        input,select{
+            margin: 10px 0 0;
+            padding: 10px 20px;
+            background-color:#f9f9f9;
+            outline: none;
+            border: none;
+            &[type="checkbox"]{
+                margin-right: 15px;
+            }
+        }
+        input.invalid, 
+        select.invalid{
+            border: 1px solid rgba(255, 0, 0, 0.6);
+        }
+        span{
+            font-size: 1.2rem;
+            color: rgba(255, 0, 0, 0.6);
+        }
+    }
+    .remember{
+        margin-right: 10px;
+    }
+    button{
+        width: 100%;
+        background-color: $secondary_color;
+        color: #fff;
+        outline: none;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+    a{
+        margin: 10px auto 0;
+        text-decoration: none;
+        color: $primary_color;
+    }
+}
+
+@media screen and (max-width: 739px) {
+    .formContainer{
+        width: 80%;
+    }
+}

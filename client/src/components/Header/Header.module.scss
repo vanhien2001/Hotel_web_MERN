@@ -1,0 +1,73 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+
+.banner {
+    background: url("../../assets/Img/room_main.jpg") no-repeat bottom
+        center/cover;
+    height: 350px;
+    position: relative;
+    margin-top: 75px;
+    .text {
+        color: #ffff;
+        position: absolute;
+        font-size: 5rem;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .progressContainer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: linear-gradient(
+            to bottom,
+            transparent,
+            transparent,
+            transparent,
+            black
+        );
+        .process {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.6rem;
+            .processItem {
+                margin: 0 10px;
+                span {
+                    display: inline-block;
+                    width: 30px;
+                    text-align: center;
+                    border-radius: 50%;
+                    border: 1px solid #fff;
+                    margin-right: 10px;
+                    &.active {
+                        background-color: $primary_color;
+                        border: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 739px) {
+    .process {
+        flex-direction: column;
+        .processItem {
+            margin: 0 10px;
+            font-size: 1.4rem;
+            span {
+                width: 25px !important;
+                font-size: 1.4rem;
+            }
+        }
+    }
+}

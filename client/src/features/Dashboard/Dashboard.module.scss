@@ -1,0 +1,64 @@
+$theme_color: #1a202e;
+$background_color: #232b3e;
+$btn_color: #3f51b5;
+
+.dashboard {
+    color: #fff;
+    background-color: $background_color;
+    font-size: 1.8rem;
+    font-weight: 400;
+    transition: all 0.3s linear;
+    min-height: 100vh;
+    display: flex;
+    &.light {
+        color: #232b3e;
+        background-color: #f0f3fb;
+        .app {
+            color: $theme_color;
+        }
+    }
+    .colLeft {
+        width: 16.66667%;
+        transition: all 0.3s linear;
+        &.resize{
+            width: 0%;
+        }
+    }
+    .colRight {
+        width: 83.33333%;
+        transition: all 0.3s linear;
+        &.resize{
+            width: 100%;
+        }
+    }
+    .app {
+        margin-top: 70px;
+        padding: 24px;
+    }
+}
+
+
+@media screen and (max-width: 739px) {
+    .dashboard {
+        &.light {
+            color: #232b3e;
+            background-color: #f0f3fb;
+            .app {
+                color: $theme_color;
+            }
+        }
+        .colLeft {
+            width: 0%;
+            &.resize{
+                width: 0%;
+            }
+        }
+        .colRight {
+            width: 100%;
+        }
+        .app {
+            padding: 20px;
+        }
+    }
+    
+}

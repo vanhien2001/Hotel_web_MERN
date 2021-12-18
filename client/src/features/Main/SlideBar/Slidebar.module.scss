@@ -1,0 +1,228 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+
+.slidebarInfor{
+    background-color: $primary_color;
+    padding:12px;
+    .bookBtn{
+        margin: 20px 12px;
+        width: calc(100% - 24px);
+        border: none;
+        outline: none;
+        background-color: $secondary_color;
+        color: #fff;
+        padding: 15px 20px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .inforContainer{
+        padding: 12px;
+        background-color:#151516;
+        background-clip: content-box;
+        .title{
+            padding-top: 20px;
+            text-align: center;
+            color: #fff;
+            font-size: 1.6rem;
+        }
+        .inforItem{
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            .day{
+                min-width: 50px;
+                text-align: center;
+                font-size:4rem;
+                color: $secondary_color;
+            }
+            .monthContainer{
+                margin-left: 20px;
+                text-align: center;
+                .month{
+                    font-size: 1.4rem;
+                    font-weight: 300;
+                    color: $secondary_color;
+                    margin-bottom: 10px;
+                }
+                i{
+                    color: #fff;
+                    font-size: 1.6rem;
+                    display: block;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+.slidebar{
+    .filterList {
+        margin: 30px 0;
+        .filterItem{
+            position: relative;
+            border-top: 1px solid rgba(193, 155, 119, 0.1);
+            padding: 24px;
+            transition: all 0.3s linear;
+            overflow: hidden;
+            & + .filterItem{
+                max-height: 74px;
+            }
+            &.open{
+                max-height: 200px !important;
+                .title{
+                    i{
+                        transform: rotate(-180deg);
+                    }
+                }
+            }
+            &:last-child{
+                border-bottom: 1px solid rgba(193, 155, 119, 0.1);
+            }
+            .title{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size:1.8rem;
+                margin-bottom: 20px;
+                i{
+                    cursor: pointer;
+                    transition: all 0.3s linear;
+                }
+            }
+            input[type="range"]{
+                position: relative;
+                width: 100%;
+                -webkit-appearance: none;
+                height: 4px;
+                background-color: $font_color;
+                &::-webkit-slider-thumb{
+                    -webkit-appearance: none;
+                    height:15px;
+                    width: 15px;
+                    background-color: $primary_color;
+                    cursor: pointer;
+                }
+                
+            }
+            .process{
+                left: 24px;
+                top: 78px;
+                position: absolute;
+                height:4px;
+                background-color: $primary_color;
+            }
+            .serviceList{
+                .serviceItem{
+                    margin-bottom: 10px;
+                    input{
+                        margin-right: 10px;
+                    }
+                    label{
+                        font-size: 1.4rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.slidebar.slidebar2{
+    background-color: $primary_color;
+    position: relative;
+    span.roomName{
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background-color: $primary_color;
+        color: #fff;
+        padding: 2px 15px;
+    }
+    img{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .title{
+        text-align: center;
+        color: #fff;
+        font-size: 1.6rem;
+        
+    }
+    .inforContainer{
+        text-align: center;
+        color: #fff;
+        font-size: 1.4rem;
+        .title{
+            color: $secondary_color;
+        }
+        .day{
+            color: $secondary_color;
+            font-size: 4rem;
+        }
+        .month{
+            font-style: italic;
+        }
+        .date,.amountTitle{
+            color: $font_color;
+            margin: 5px 0 20px;
+        }
+        .amount{
+            font-size: 3rem;
+            margin-top: 10px;
+        }
+    }
+    .total{
+        padding: 20px 0;
+        text-align: center;
+        font-size: 4rem;
+        color: #fff;
+        background-color:#151516;
+        span{
+            font-size: 1.6rem;
+        }
+    }
+}
+
+.note{
+    margin-top: 30px;
+    padding: 0 24px;
+    font-size: 1.4rem;
+    color: $font_color;
+    span{
+        color: $primary_color;
+    }
+}
+
+.emtyRoom{
+    div{
+        margin-bottom: 20px;
+        font-size: 1.6rem;
+    }
+    button{
+        border: none;
+        outline: none;
+        background-color: $secondary_color;
+        color: #fff;
+        font-weight: bold;
+        padding: 15px 25px;
+        cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 739px) {
+    .filterItem + .filterItem{
+        max-height: 70px !important;
+    }
+    .emtyRoom{
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 740px) and (max-width: 1023px) {
+    
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1239px) {
+
+}

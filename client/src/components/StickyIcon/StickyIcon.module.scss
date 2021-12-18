@@ -1,0 +1,44 @@
+.stickyIcon {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    text-decoration: none;
+    z-index: 99;
+    .title {
+        position: absolute;
+        padding: 10px 20px;
+        color: #fff;
+        background-color: #c19b77;
+        padding: 2px 8px;
+        font-size: 1rem;
+        transform: translate(20%,-30%);
+    }
+    .text {
+        font-size: 2rem;
+        text-align: center;
+        color: #fff;
+        background-color: #1c1c1c;
+        padding: 15px;
+        border-radius: 50%;
+        z-index: 99;
+    }
+    .icon {
+        z-index: 88;
+        position: absolute;
+        background-color: #1c1c1c;
+        padding: 10px;
+        border-radius: 50%;
+        text-align: center;
+        transform: translate(-60%, 60%);
+        i {
+            font-size: 2rem;
+            color: #fff;
+        }
+    }
+}
+
+@media screen and (max-width: 739px) {
+    .stickyIcon{
+        display: none;
+    }
+}

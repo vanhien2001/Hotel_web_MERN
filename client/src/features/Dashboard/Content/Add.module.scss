@@ -1,0 +1,129 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+$theme_color: #1a202e;
+$background_color: #232b3e;
+$btn_color: #3f51b5;
+
+.addForm {
+    background-color: $theme_color;
+    border-radius: 10px;
+    padding: 24px;
+    transition: all 0.3s linear;
+    &.light {
+        background-color: #fff;
+        .formControl {
+            span {
+                background-color: #fff;
+            }
+            input,
+            select {
+                border-color: $background_color;
+                color: $theme_color;
+                option {
+                    background-color: #fff;
+                }
+                &:focus,
+                &:hover {
+                    border-color: $theme_color;
+                }
+            }
+        }
+    }
+    form {
+        padding: 24px;
+        .formControl {
+            margin-bottom: 30px;
+            position: relative;
+            input,
+            select,
+            textarea {
+                position: relative;
+                width: 100%;
+                outline: none;
+                border: 1px solid #96a2b4;
+                border-radius: 5px;
+                background-color: transparent;
+                padding: 15px 20px;
+                color: #fff;
+                z-index: 2;
+                transition: all 0.3s linear;
+                option {
+                    border: none;
+                    background-color: $theme_color;
+                    transition: all 0.3s linear;
+                }
+                &:focus,
+                &:hover {
+                    border-color: #fff;
+                }
+                &:focus ~ span,
+                &:not(:placeholder-shown) ~ span {
+                    padding: 0 10px;
+                    z-index: 3;
+                    font-size: 1.2rem;
+                    transform: translate(-15%, -200%);
+                }
+            }
+            .iconService {
+                color: #fff;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 20px;
+                font-size: 2.2rem;
+            }
+            textarea {
+                resize: none;
+                height: 100px;
+                &:focus ~ span,
+                &:not(:placeholder-shown) ~ span {
+                    transform: translate(-15%, -350%);
+                }
+            }
+            span {
+                z-index: 1;
+                position: absolute;
+                font-size: 1.4rem;
+                left: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: $theme_color;
+                transition: all 0.3s linear;
+            }
+            .title {
+                font-size: 1.6rem;
+                margin-bottom: 10px;
+            }
+            .serviceItem {
+                font-size: 1.6rem;
+                display: flex;
+                align-items: center;
+                input[type="checkbox"] {
+                    width: unset;
+                    margin-right: 10px;
+                }
+            }
+        }
+        .formBtn {
+            background-color: $btn_color;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            color: #fff;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: all 0.2s linear;
+            &:hover{
+                opacity: 1;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 739px) {
+    .formBtn{
+        width: 100%;
+    }
+}

@@ -1,0 +1,54 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+
+.bookingInfor{
+    .title{
+        text-align: center;
+        color: $secondary_color;
+        font-size: 3rem;
+        margin-bottom: 50px;
+    }
+    .infor{
+        width: 50%;
+        margin: 0 auto;
+        .itemImg{
+            img{
+                width: 100%;
+            }
+        }
+        .inforItem{
+            font-size: 1.6rem;
+            color: $font_color;
+            margin-bottom: 30px;
+            .item{
+                color: $primary_color;
+                margin-bottom: 10px;
+                span{
+                    color: $font_color;
+                }
+            }
+            .btn{
+                outline: none;
+                border: none;
+                border-radius: 5px;
+                background-color: $secondary_color;
+                padding: 10px 20px;
+                color: #fff;
+                cursor: pointer;
+                opacity: 0.8;
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 739px) {
+    .bookingInfor{
+        .infor{
+            width: 80%;
+        }
+    }
+}

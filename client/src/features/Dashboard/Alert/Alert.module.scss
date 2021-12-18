@@ -1,0 +1,40 @@
+.alert{
+    position: fixed;
+    top: 100px;
+    right: 0;
+    transform: translateX(100%);
+    color: black;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    animation: appear 0.2s ease-in forwards;
+    z-index: 9999;
+    i{
+        margin-right: 20px;
+        font-size: 2rem;
+    }
+    &.success{
+        border: 1px solid green;
+        background-color: #b8eb91;
+        i{
+            color: green;
+        }
+    }
+    &.fail{
+        border: 1px solid red;
+        background-color: #ffe5e2;
+        i{
+            color: red;
+        }
+    }
+}
+
+@keyframes appear {
+    0%{
+        transform: translateX(100%);
+    }
+    100%{
+        transform: translateX(-30px);
+    }
+}

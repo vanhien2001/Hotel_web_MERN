@@ -1,0 +1,108 @@
+$theme_color: #1a202e;
+$background_color: #232b3e;
+$btn_color: #3f51b5;
+
+.preload {
+    position: absolute;
+    inset: 0;
+    background-color: $background_color;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    &.light {
+        background-color: #f0f3fb;
+        .preloadText {
+          &::after {
+              color: $theme_color;
+          }
+      }
+    }
+    .preloadDot {
+        position: relative;
+        height: 20px;
+        width: 300px;
+        margin-bottom: 40px;
+        .dot {
+            position: absolute;
+            height: 25px;
+            width: 25px;
+            border-radius: 50%;
+            animation: dot 2s ease-in infinite;
+            &:first-child {
+                background-color: #8cc759;
+                animation-delay: 0.5s;
+            }
+
+            &:nth-child(2) {
+                background-color: #8c6daf;
+                animation-delay: 0.4s;
+            }
+
+            &:nth-child(3) {
+                background-color: #ef5d74;
+                animation-delay: 0.3s;
+            }
+
+            &:nth-child(4) {
+                background-color: #f9a74b;
+                animation-delay: 0.2s;
+            }
+
+            &:nth-child(5) {
+                background-color: #60beeb;
+                animation-delay: 0.1s;
+            }
+
+            &:nth-child(6) {
+                background-color: #fbef5a;
+                animation-delay: 0s;
+            }
+        }
+    }
+    .preloadText {
+        &::after {
+            content: "Loading";
+            font-size: 3rem;
+            color: #fff;
+            animation: preload_text 2.5s linear infinite;
+        }
+    }
+}
+
+@keyframes preload_text {
+    0% {
+        content: "Loading";
+    }
+    25% {
+        content: "Loading.";
+    }
+    50% {
+        content: "Loading..";
+    }
+    100% {
+        content: "Loading...";
+    }
+}
+
+@keyframes dot {
+    0% {
+        transform: translateX(0);
+    }
+    10% {
+        transform: translateX(0);
+    }
+    40% {
+        transform: translateX(calc(300px - 100%));
+    }
+    60% {
+        transform: translateX(calc(300px - 100%));
+    }
+    90% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

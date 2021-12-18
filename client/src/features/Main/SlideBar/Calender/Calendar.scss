@@ -1,0 +1,52 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+
+.calendar_container {
+    position: absolute;
+    width: 300px;
+    z-index: 99;
+    top: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 1px 0 #fff;
+    .event{
+      background-color: $secondary_color;
+      font-size: 1rem;
+      border: none;
+      text-align: center;
+      width: 100%;
+      transform: translate(-10%,10%);
+    }
+    .fc {
+        background-color: $primary_color;
+        color: #fff;
+        height: 100%;
+        width: 100%;
+        .fc-header-toolbar {
+            padding: 10px;
+            background-color: #151516;
+        }
+        .fc-scrollgrid {
+            border: none !important;
+            th,
+            td {
+                border: none !important;
+            }
+            td {
+                .fc-daygrid-day-frame {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 739px){
+    .calendar_container {
+        width: 180px;
+    }
+}

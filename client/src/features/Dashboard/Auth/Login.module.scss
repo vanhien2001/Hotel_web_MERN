@@ -1,0 +1,105 @@
+$theme_color: #1a202e;
+$background_color: #232b3e;
+$btn_color: #3f51b5;
+
+.login {
+    background-color: $theme_color;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    img {
+        width: 100%;
+        height: 100%;
+    }
+    .formWrap {
+        display: flex;
+        align-items: center;
+        .formContainer {
+            width: 100%;
+            background-color: $background_color;
+            border-radius: 20px;
+            border: 1px solid #fff;
+            padding: 50px;
+            position: relative;
+            .title {
+                font-size: 3rem;
+                text-align: center;
+                color: #fff;
+                margin: 0;
+                margin-bottom: 20px;
+            }
+            .notify {
+                margin-bottom: 30px;
+                font-size: 1.4rem;
+                padding: 5px 0;
+                background-color: rgba(255, 0, 0, 0.6);
+                text-align: center;
+                color: #fff;
+            }
+            .formControl {
+                margin-bottom: 30px;
+                position: relative;
+                input,
+                select {
+                    position: relative;
+                    width: 100%;
+                    outline: none;
+                    border: 1px solid #96a2b4;
+                    border-radius: 5px;
+                    background-color: transparent;
+                    padding: 15px 20px;
+                    color: #fff;
+                    z-index: 2;
+                    margin: 0;
+                    transition: all 0.3s linear;
+                    option {
+                        border: none;
+                        transition: all 0.3s linear;
+                    }
+                    &:focus,
+                    &:hover {
+                        border-color: #fff;
+                    }
+                    &:focus ~ span,
+                    &:not(:placeholder-shown) ~ span {
+                        padding: 0 10px;
+                        z-index: 3;
+                        font-size: 1.2rem;
+                        transform: translate(-15%, -200%);
+                    }
+                }
+                span {
+                    color: #fff;
+                    z-index: 1;
+                    position: absolute;
+                    font-size: 1.4rem;
+                    left: 20px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background-color: $background-color;
+                    transition: all 0.3s linear;
+                }
+            }
+            .formBtn {
+                width: 100%;
+                background-color: $btn_color;
+                outline: none;
+                border: none;
+                border-radius: 5px;
+                padding: 10px 20px;
+                color: #fff;
+                cursor: pointer;
+                margin-top: 20px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 739px) {
+    .formWrap {
+        .formContainer {
+            margin: 0 30px;
+            padding: 30px !important;
+        }
+    }
+}

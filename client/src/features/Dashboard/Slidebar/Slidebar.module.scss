@@ -1,0 +1,166 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+$theme_color: #1a202e;
+$background_color: #232b3e;
+$btn_color: #3f51b5;
+
+.slidebar {
+    background-color: $theme_color;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 16.66667%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    transform-origin: left;
+    transition: all 0.3s linear, transform 0.3s linear;
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: transparent;
+        transition: all 3s linear;
+    }
+    &:hover {
+        ::-webkit-scrollbar-thumb {
+            background-color: $font_color;
+        }
+    }
+    &.resize {
+        transform: translateX(-100%);
+    }
+    &.light {
+        color: #232b3e;
+        background-color: #fff;
+        .slidebarContent {
+            .slidebarList {
+                .slidebarItem {
+                    .name {
+                        color: #232b3e;
+                        div {
+                            i {
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                    .menu {
+                        .detail {
+                            color: #232b3e;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 24px;
+        transform: translateX(-10px);
+        i {
+            margin-right: 20px;
+            color: red;
+        }
+    }
+    .slidebarContent {
+        padding: 24px 20px 24px 24px;
+        margin-right: 4px;
+        width: 100%;
+        flex: 1;
+        overflow-y: scroll;
+        .staffInfor {
+            .avatar {
+                font-size: 6rem;
+                margin-bottom: 20px;
+            }
+            .staffName {
+                font-size: 1.6rem;
+                font-weight: bold;
+            }
+            .staffJob {
+                font-size: 1.2rem;
+                margin-bottom: 20px;
+            }
+            .staffFeature {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                i + i {
+                    margin-left: 40px;
+                    cursor: pointer;
+                }
+            }
+        }
+        .slidebarList {
+            margin-top: 50px;
+            text-align: left;
+            font-size: 1.6rem;
+            .title {
+                font-size: 1.6rem;
+                color: $font_color;
+                margin-left: 20px;
+            }
+            .slidebarItem {
+                margin: 10px 0;
+                max-height: 45px;
+                overflow: hidden;
+                transition: all 0.3s linear;
+                &.open {
+                    max-height: 300px;
+                }
+                .name {
+                    display: block;
+                    color: #fff;
+                    text-decoration: none;
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-radius: 5px;
+                    padding: 10px 20px;
+                    div {
+                        i {
+                            margin-right: 10px;
+                        }
+                    }
+                    &:hover {
+                        background-color: rgba(16, 19, 28, 0.3);
+                    }
+                }
+                .menu {
+                    .detail {
+                        color: #fff;
+                        display: block;
+                        text-decoration: none;
+                        border-radius: 5px;
+                        padding: 10px 30px;
+                        cursor: pointer;
+                        &:hover {
+                            background-color: rgba(16, 19, 28, 0.3);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 739px) {
+    .slidebar {
+        top: 70px;
+        z-index: 99;
+        width: 70%;
+        max-width: 300px;
+        transform: translateX(-100%) !important;
+        &.resize {
+            transform: translateX(0) !important;
+        }
+    }
+}

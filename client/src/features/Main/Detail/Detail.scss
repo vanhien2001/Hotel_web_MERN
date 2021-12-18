@@ -1,0 +1,203 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+
+.detail_container {
+    color: $font-color;
+    .title {
+        .name {
+            color: $primary_color;
+            font-size: 4rem;
+        }
+        .rate {
+            font-size: 1.6rem;
+            margin-bottom: 30px;
+            i {
+                color: $font-color;
+                margin-left: 10px;
+            }
+        }
+    }
+    .room_detail {
+        .slider {
+            width: 100%;
+            height: 400px;
+            .swiper {
+                position: relative;
+                height: 100%;
+                width: 100%;
+                .swiper-button-next,
+                .swiper-button-prev {
+                    color: $primary_color;
+                }
+                .swiper-pagination {
+                    position: absolute;
+                    bottom: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    .swiper-pagination-bullet {
+                        background-color: $primary_color;
+                        height: 10px;
+                        width: 10px;
+                        & + .swiper-pagination-bullet {
+                            margin-left: 10px;
+                        }
+                    }
+                }
+            }
+        }
+        img {
+            width: 100%;
+            height: 400px;
+        }
+        .infor {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .infor_item {
+                text-align: center;
+                font-size: 1.6rem;
+                padding: 0 50px;
+                margin: 30px 0;
+                i {
+                    font-size: 3rem;
+                    margin-bottom: 20px;
+                }
+            }
+        }
+        .desc {
+            padding: 40px 0;
+            border-top: 1px solid rgba(193, 155, 119, 0.2);
+            border-bottom: 1px solid rgba(193, 155, 119, 0.2);
+            font-size: 1.4rem;
+        }
+    }
+    .detail_item {
+        margin: 30px 0;
+        .title {
+            color: $primary_color;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+        .service_list {
+            .service_item {
+                margin-bottom: 20px;
+                font-size: 1.4rem;
+                i {
+                    font-size: 2rem;
+                    margin-right: 20px;
+                }
+            }
+        }
+        .around_list {
+            .around_item {
+                position: relative;
+                overflow: hidden;
+                img {
+                    object-fit: cover;
+                    height: 300px;
+                    transition: all 0.2s linear;
+                    &:hover {
+                        transform: scale(1.2);
+                    }
+                }
+                span {
+                    color: #fff;
+                    position: absolute;
+                    bottom: 20px;
+                    left: 20px;
+                    font-size: 1.6rem;
+                }
+            }
+        }
+    }
+    .slidebar {
+        background-color: $primary_color;
+        .book_btn {
+            margin: 20px 24px;
+            width: calc(100% - 48px);
+            border: none;
+            outline: none;
+            background-color: $secondary_color;
+            color: #fff;
+            padding: 15px 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    }
+}
+
+@media screen and (max-width: 739px){
+    .detail_container {
+        .title {
+            text-align: center;
+        }
+        .room_detail {
+            .slider {
+                img{
+                    object-fit: cover;
+                    height: 90%;
+                }
+            }
+            .infor {
+                .infor_item {
+                    padding: 0 20px;
+                    i {
+                        font-size: 2.5rem;
+                    }
+                }
+            }
+            .desc {
+                padding: 40px 20px;
+            }
+        }
+        .detail_item {
+            padding: 0 20px;
+            .service_list {
+                .service_item {
+                    margin-bottom: 20px;
+                    font-size: 1.4rem;
+                    i {
+                        font-size: 2rem;
+                        margin-right: 20px;
+                    }
+                }
+            }
+            .around_list {
+                .around_item {
+                    position: relative;
+                    overflow: hidden;
+                    img {
+                        object-fit: cover;
+                        height: 300px;
+                        transition: all 0.2s linear;
+                        &:hover {
+                            transform: scale(1.2);
+                        }
+                    }
+                    span {
+                        color: #fff;
+                        position: absolute;
+                        bottom: 20px;
+                        left: 20px;
+                        font-size: 1.6rem;
+                    }
+                }
+            }
+        }
+        .slidebar {
+            background-color: $primary_color;
+            .book_btn {
+                margin: 20px 24px;
+                width: calc(100% - 48px);
+                border: none;
+                outline: none;
+                background-color: $secondary_color;
+                color: #fff;
+                padding: 15px 20px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+        }
+    }
+}

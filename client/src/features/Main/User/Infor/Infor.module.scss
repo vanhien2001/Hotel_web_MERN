@@ -1,0 +1,83 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+
+.userInfor{
+    .title{
+        text-align: center;
+        color: $secondary_color;
+        font-size: 3rem;
+        margin-bottom: 50px;
+    }
+    .infor{
+        width: 40%;
+        margin: 0 auto;
+        .inforItem{
+            font-size: 1.6rem;
+            color: $font_color;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .item{
+                color: $primary_color;
+            }
+            input,select{
+                outline: none;
+                border: 1px solid rgba(28, 28, 29, 0.2);
+                border-radius: 5px;
+                background-color: transparent;
+                padding: 8px 15px;
+                font-size: 1.6rem;
+                color: $font_color;
+                width: 80%;
+                &.disabled{
+                    border: none;
+                    padding: 9px 16px;
+                }
+            }
+            .btn{
+                font-family: "Poppins", sans-serif;
+                outline: none;
+                border: none;
+                border-radius: 5px;
+                background-color: $secondary_color;
+                padding: 10px 20px;
+                color: #fff;
+                cursor: pointer;
+                opacity: 0.8;
+                font-size: 1.6rem;
+                margin: 20px 0;
+                min-width: 100px;
+                text-align: center;
+                &:hover {
+                    opacity: 1;
+                }
+                & + .btn{
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 739px) {
+    .userInfor{
+        .infor{
+            width: 80%;
+            .inforItem{
+                input,select{
+                    width: 65%;
+                }
+                .btnContainer{
+                    display: flex;
+                    flex-direction: column;
+                }
+                .btn{
+                    display: block;
+                    width: 300px;
+                }
+            }
+        }
+    }
+}

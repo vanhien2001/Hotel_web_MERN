@@ -1,0 +1,163 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: $primary_color;
+    font-weight: 300;
+    height: 75px;
+    .navbarContainer {
+        font-size: 1.8rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+        .navbarIcon {
+            cursor: pointer;
+            width: 200px;
+        }
+        .navbarList {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .navbarItem {
+                &.active {
+                    border-bottom: 1px solid #fff;
+                    & > a {
+                        color: #fff;
+                    }
+                }
+                margin-left: 20px;
+                & > a {
+                    color: $font_color;
+                    text-decoration: none;
+                    display: block;
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                    position: relative;
+                    &:hover {
+                        color: #f9f9f9;
+                    }
+                }
+                .user {
+                    position: relative;
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                    background-color: rgb(249, 249, 249);
+                    color: $primary_color;
+                    &:hover .userItemContainer {
+                        display: block;
+                    }
+                    .userItemContainer {
+                        position: absolute;
+                        top: 58px;
+                        left: 50%;
+                        width: 210px;
+                        z-index: 999;
+                        background-color: #f9f9f9;
+                        transform: translateX(-50%);
+                        display: none;
+                        .userItem {
+                            a {
+                                padding: 10px 15px;
+                                border-top: 1px solid #f1f1f1;
+                                border-bottom: 1px solid #f1f1f1;
+                                display: block;
+                                text-decoration: none;
+                                color: $primary_color;
+                                &:hover {
+                                    background-color: rgb(230, 230, 230);
+                                }
+                            }
+                        }
+                        &::before {
+                            content: "";
+                            height: 30px;
+                            position: absolute;
+                            width: 100%;
+                            top: -25px;
+                        }
+                    }
+                }
+                &:last-child > a {
+                    background-color: rgb(249, 249, 249);
+                    color: $primary_color;
+                }
+            }
+        }
+        .navbarMenuIcon {
+            font-size: 3rem;
+            color: #fff;
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 739px) {
+    .navbar {
+        .navbarContainer {
+            margin: 0 20px;
+            .navbarList {
+                position: fixed;
+                flex-direction: column;
+                background-color: $primary_color;
+                z-index: 99;
+                right: 0;
+                top: 70px;
+                transform: translateX(100%);
+                padding: 10px 20px;
+                transition: all 0.3s linear;
+                box-shadow: 0 1px 10px 1px rgba(255, 255, 255, 0.1);
+                &.open {
+                    transform: translateX(0);
+                }
+                .navbarItem {
+                    font-size: 2rem;
+                    margin: 15px 10px;
+                    .user {
+                        text-align: center;
+                        max-height: 40px;
+                        overflow: hidden;
+                        transition: all 0.3s linear;
+                        width: 130px;
+                        padding: 5px;
+                        &:hover {
+                            max-height: 400px;
+                        }
+                        .userItemContainer {
+                            position: unset;
+                            display: block;
+                            width: 100%;
+                            top: 0;
+                            left: unset;
+                            transform: translateX(0);
+                            .userItem {
+                                a {
+                                    font-size: 1.2rem;
+                                    padding: 10px 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .navbarMenuIcon {
+                display: inline-block;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 740px) and (max-width: 1023px) {
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1239px) {
+}

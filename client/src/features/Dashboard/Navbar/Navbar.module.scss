@@ -1,0 +1,92 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+$theme_color: #1a202e;
+$background_color: #232b3e;
+$btn_color: #3f51b5;
+
+.navbar {
+    background-color: $theme_color;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 70px;
+    width: 83.33333%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    font-size: 2rem;
+    transition: all 0.3s linear, width 0.3s linear;
+    z-index: 99;
+    &.resize{
+        width: 100%;
+    }
+    &.light {
+        color: #232b3e;
+        background-color: #fff;
+        .navbarList {
+            .navbarItem {
+                .dropdown {
+                    background-color: #fff;
+                    .dropdownItem + .dropdownItem {
+                        border-color: rgba(0, 0, 0, 0.1);
+                    }
+                }
+            }
+        }
+    }
+    i {
+        cursor: pointer;
+    }
+    .navbarList {
+        display: flex;
+        align-items: center;
+        .navbarItem {
+            position: relative;
+            margin-left: 30px;
+            .dropdown {
+                position: absolute;
+                font-size: 1.6rem;
+                width: 200px;
+                top: calc(100% + 20px);
+                right: -30px;
+                transform: scaleY(0);
+                transform-origin: top center;
+                background-color: $theme_color;
+                border-radius: 10px;
+                // overflow: hidden;
+                transition: all 0.2s ease-in;
+                &.open {
+                    transform: scaleY(1);
+                }
+                &:before {
+                    position: absolute;
+                    content: "";
+                    box-sizing: content-box;
+                    right: 30px;
+                    top: -20px;
+                    border: 10px solid transparent;
+                    border-bottom-color: inherit;
+                }
+                .dropdownItem {
+                    padding: 10px 20px;
+                    cursor: pointer;
+                    & + .dropdown_item {
+                        border-top: 1px solid rgba(255, 255, 255, 0.1);
+                    }
+                    i {
+                        font-size: 1.8rem;
+                        margin-right: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 739px) {
+    .navbar{
+        width: 100%;
+    }
+}

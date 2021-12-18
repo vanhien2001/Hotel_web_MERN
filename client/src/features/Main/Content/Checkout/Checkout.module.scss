@@ -1,0 +1,143 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+
+.checkoutContainer {
+    position: relative;
+    .checkoutInfo {
+        margin-bottom: 50px;
+        .title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .infoItem {
+            color: $font_color;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            span {
+                color: black;
+                margin-right: 10px;
+            }
+            .service {
+                margin: 5px 0;
+                color: $font_color;
+                // width: 33.33%;
+            }
+            & > div:first-child {
+                margin: 30px 0 10px;
+                color: black;
+            }
+            button {
+                margin: 30px 0 10px;
+                padding: 10px 30px;
+                background-color: $secondary_color;
+                color: #fff;
+                border: none;
+                outline: none;
+                cursor: pointer;
+            }
+        }
+    }
+    .paymentContainer {
+        padding: 50px 0;
+        border-top: 1px solid rgba(193, 155, 119, 0.2);
+        .title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .paymentList {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            .paymentItem {
+                color: $font_color;
+                cursor: pointer;
+                font-size: 1.8rem;
+                &.active {
+                    color: black;
+                    border-bottom: 1px solid rgba(0, 0, 0, 1);
+                }
+            }
+        }
+        .paymentDetail {
+            font-size: 1.8rem;
+            color: $font_color;
+            .paymentDetailItem {
+                display: none;
+                input[type="checkbox"] {
+                    margin-right: 10px;
+                }
+                label {
+                    font-size: 1.6rem;
+                }
+                .creditNumber {
+                    width: 100%;
+                    display: block;
+                    outline: none;
+                    border: 1px solid rgba(193, 155, 119, 0.2);
+                    padding: 10px 20px;
+                    background-color: #f9f9f9;
+                    margin-top: 20px;
+                }
+                .paymentBtn {
+                    cursor: pointer;
+                    margin: 20px 0;
+                    padding: 15px 30px;
+                    background-color: $secondary_color;
+                    color: #fff;
+                    outline: none;
+                    border: none;
+                }
+                .paymentNote {
+                    font-size: 1.6rem;
+                    i {
+                        margin-right: 20px;
+                    }
+                }
+                &.active {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 739px) {
+    .checkoutContainer {
+        padding: 0 20px;
+        .checkoutInfo {
+            margin: 50px 0;
+            .title {
+                font-size: 2.5rem;
+                text-align: center;
+            }
+            button {
+                margin: 30px auto 10px !important;
+            }
+        }
+        .paymentContainer {
+            padding: 50px 0 0;
+            .title {
+                font-size: 2.5rem;
+                text-align: center;
+            }
+            .paymentList {
+                flex-wrap: wrap;
+                .paymentItem {
+                    width: 50%;
+                    text-align: center;
+                    font-size: 1.6rem;
+                    margin-bottom: 10px;
+                }
+            }
+            .paymentDetail {
+                font-size: 1.6rem;
+                text-align: center;
+                .paymentDetailItem {
+                    display: none;
+                }
+            }
+        }
+    }
+}

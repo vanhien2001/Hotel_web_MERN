@@ -1,0 +1,75 @@
+GET http://localhost:5000/typeroom
+
+###
+
+POST  http://localhost:5000/user/changePass
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "vanhien2001",
+    "newPassword": "123"
+}
+
+###
+GET  http://localhost:5000/user/load
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjYxNjFjMTIxMWNhYTQ2YWIxMTZmMjYyYiIsImlhdCI6MTYzNTY1MjUyN30.uTE2ScE17Va5DSSbgk2Zm4xRd0Bj0xWUIqvl_k8O1_Q
+
+###
+
+POST  http://localhost:5000/user/login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "123"
+}
+
+###
+
+
+GET http://localhost:5000/booking
+###
+
+POST http://localhost:5000/room
+Content-Type: application/json
+
+{
+   "search": 69
+}
+
+###
+
+GET  http://localhost:5000/booking
+
+###
+
+POST  http://localhost:5000/typeRoom/store
+Content-Type: application/json
+
+{
+    "name": "Single 3"
+}
+
+
+###
+
+GET  http://localhost:5000/booking
+###
+
+PUT  http://localhost:5000/staff/615b137fc52a0c9437690a84
+Content-Type: application/json
+
+{
+    "username": "kkkk8888",
+    "password": "kkkk",
+    "firstname": "kkkk",
+    "lastname": "kkkk",
+    "email": "kkkk",
+    "phone": "kkkk",
+    "cmnd": "kkkk",
+    "gender": "male",
+    "address": "kkkk",
+    "position": "kkkk88888",
+    "salary": 696969
+}
