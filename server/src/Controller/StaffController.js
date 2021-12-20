@@ -199,7 +199,7 @@ class StaffController {
         try {
             const staff = await Staff.delete({ _id: id })
             if (!staff) return res.status(401).json({ success: false, messages: 'Cant delete staff' })
-            res.json({ success: true })
+            res.json({ success: true, messages: 'Delete successfully'})
         } catch (error) {
             res.status(500).json({ success: false, messages: 'Interval server error' })
         }
@@ -211,7 +211,7 @@ class StaffController {
         try {
             const staff = await Staff.delete({_id: {$in: ids.map( id => mongoose.Types.ObjectId(id))}})
             if (!staff) return res.status(401).json({ success: false, messages: 'Cant delete staff' })
-            res.json({ success: true })
+            res.json({ success: true, messages: 'Delete successfully' })
         } catch (error) {
             res.status(500).json({ success: false, messages: 'Interval server error' })
         }

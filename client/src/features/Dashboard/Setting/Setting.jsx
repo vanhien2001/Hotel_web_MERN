@@ -7,8 +7,8 @@ const Setting = () => {
     const {
         theme,
         setTheme,
-        slidebarTheme,
-        setSlidebarTheme,
+        sidebarTheme,
+        setSidebarTheme,
         openSetting,
         setOpenSetting,
         navbarTheme,
@@ -55,17 +55,17 @@ const Setting = () => {
                     </div>
                     <div className={styles.settingDetail}>
                         <button
-                            onClick={() => setSlidebarTheme("light")}
+                            onClick={() => setSidebarTheme("light")}
                             className={
-                                slidebarTheme === "light" ? styles.active : ""
+                                sidebarTheme === "light" ? styles.active : ""
                             }
                         >
                             Light
                         </button>
                         <button
-                            onClick={() => setSlidebarTheme("dark")}
+                            onClick={() => setSidebarTheme("dark")}
                             className={
-                                slidebarTheme === "dark" ? styles.active : ""
+                                sidebarTheme === "dark" ? styles.active : ""
                             }
                         >
                             Dark
@@ -78,7 +78,7 @@ const Setting = () => {
                         <button
                             onClick={() => {
                                 setTheme("light");
-                                setSlidebarTheme("light");
+                                setSidebarTheme("light");
                                 setNavbarTheme("#fff");
                             }}
                             className={theme === "light" ? styles.active : ""}
@@ -88,7 +88,7 @@ const Setting = () => {
                         <button
                             onClick={() => {
                                 setTheme("dark");
-                                setSlidebarTheme("dark");
+                                setSidebarTheme("dark");
                                 setNavbarTheme("#1a202e");
                             }}
                             className={theme === "dark" ? styles.active : ""}

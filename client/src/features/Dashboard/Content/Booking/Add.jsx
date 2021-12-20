@@ -42,7 +42,8 @@ const Add = ({ edit, booking, setEdit, setMessagesAll }) => {
         arrive: booking ? booking.arrive : '',
         depart: booking ? booking.depart : '',
         totalPrice: booking ? booking.totalPrice : 0,
-        staffBooking: staff._id
+        staffBooking: staff._id,
+        payment: "Payment on arrive"
     });
 
     const [messages, setMessages] = useState(null);

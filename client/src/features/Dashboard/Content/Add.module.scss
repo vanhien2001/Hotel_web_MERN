@@ -14,11 +14,13 @@ $btn_color: #3f51b5;
         background-color: #fff;
         .formControl {
             span {
+                color: rgba(35, 43, 62,0.8);
                 background-color: #fff;
             }
             input,
-            select {
-                border-color: $background_color;
+            select,
+            textarea {
+                border-color: rgba(35, 43, 62,0.5);
                 color: $theme_color;
                 option {
                     background-color: #fff;
@@ -26,6 +28,13 @@ $btn_color: #3f51b5;
                 &:focus,
                 &:hover {
                     border-color: $theme_color;
+                }
+                &:hover ~ span {
+                    color: $theme_color;
+                }
+                &:focus ~ span,
+                &:not(:placeholder-shown) ~ span {
+                    color: $theme_color;
                 }
             }
         }
@@ -57,12 +66,16 @@ $btn_color: #3f51b5;
                 &:hover {
                     border-color: #fff;
                 }
+                &:hover ~ span {
+                    color: #fff;
+                }
                 &:focus ~ span,
                 &:not(:placeholder-shown) ~ span {
                     padding: 0 10px;
                     z-index: 3;
                     font-size: 1.2rem;
                     transform: translate(-15%, -200%);
+                    color: #fff;
                 }
             }
             .iconService {

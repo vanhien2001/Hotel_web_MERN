@@ -48,6 +48,10 @@ const ChangePassForm = () => {
         return clearTimeout(timeout);
     }, [messages]);
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     if (!user) {
         return <Redirect to="/room" />;
     } else {

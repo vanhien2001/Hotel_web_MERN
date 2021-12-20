@@ -73,6 +73,10 @@ const BookingInfor = () => {
         dispatch(getAll(user ? { user: user.id } : ""));
     }, [user]);
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     if (!user) {
         return <Redirect to="/room" />;
     }

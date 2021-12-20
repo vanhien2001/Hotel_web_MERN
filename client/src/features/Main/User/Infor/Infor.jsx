@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from 'react-router-dom';
 import clsx from 'clsx';
@@ -28,6 +28,10 @@ const Infor = () => {
             }
         })
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     if (!user) {
         return <Redirect to="/room" />
