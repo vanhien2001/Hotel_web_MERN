@@ -60,9 +60,13 @@ $btn_color: #3f51b5;
                     border-radius: 10px;
                 }
                 .value {
-                    text-align: center;
                     font-size: 2.5rem;
                     font-weight: bold;
+                }
+                .name,
+                .value{
+                    text-align: center;
+                    min-width: 100px;
                 }
             }
             progress {

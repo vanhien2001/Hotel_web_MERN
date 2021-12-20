@@ -1,8 +1,8 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch, useParams } from "react-router-dom";
-import Slidebar from "./SlideBar/Slidebar";
-import Slidebar2 from "./SlideBar/Slidebar2";
+import Sidebar from "./SideBar/Sidebar";
+import Sidebar2 from "./SideBar/Sidebar2";
 import RoomCart from "./Content/RoomCart/RoomCart";
 import Booking from "./Content/Booking/Booking";
 import Checkout from "./Content/Checkout/Checkout";
@@ -123,8 +123,8 @@ const Content = () => {
                 <>
                     <div className="col l-4 c-12">
                         <Switch>
-                            <Route exact path={`/room`} component={Slidebar} />
-                            <Route exact path={`/*`} component={Slidebar2} />
+                            <Route exact path={`/room`} component={Sidebar} />
+                            <Route exact path={`/*`} component={Sidebar2} />
                         </Switch>
                     </div>
                     <div className="col l-8 c-12">

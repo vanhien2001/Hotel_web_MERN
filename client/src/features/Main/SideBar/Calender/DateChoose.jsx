@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Calendar from './Calendar';
 import { useStore } from "../../Content";
-import styles from "../Slidebar.module.scss";
+import styles from "../Sidebar.module.scss";
 
 const DateChoose = ({ bookings }) => {
     const { bookingForm, setbookingForm, numberDay } = useStore();
@@ -12,7 +12,7 @@ const DateChoose = ({ bookings }) => {
 
     return (
         <>
-            <div className={styles.slidebarInfor}>
+            <div className={styles.sidebarInfor}>
                 <div className='grid'>
                     <div className='row no-gutters'>
                         <div className='col l-6 c-6'>

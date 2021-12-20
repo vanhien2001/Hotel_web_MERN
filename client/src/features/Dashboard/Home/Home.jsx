@@ -1,11 +1,20 @@
 import React from "react";
 import clsx from "clsx";
+import { useSelector } from "react-redux";
 import { Line, Doughnut } from "react-chartjs-2";
 import styles from "./Home.module.scss";
+import Cart from "./Cart";
 import { useStore } from "../Dashboard";
+import { roomSelector } from "../../../store/reducer/roomSlice";
+import { bookingSelector } from "../../../store/reducer/bookingSlice";
+import { staffSelector } from "../../../store/reducer/staffSlice";
 
 const Home = () => {
     const { theme } = useStore();
+    const { quantity } = useSelector(roomSelector);
+    const { bookings } = useSelector(bookingSelector);
+    const { staffs } = useSelector(staffSelector);
+
     return (
         <>
             <div
@@ -49,148 +58,16 @@ const Home = () => {
                     <div className="grid">
                         <div className="row">
                             <div className="col l-3 c-12">
-                                <div
-                                    className={clsx(
-                                        styles.cartItem,
-                                        theme==="light"
-                                            ? "shadow_light"
-                                            : "shadow"
-                                    )}
-                                >
-                                    <div className={styles.detail}>
-                                        <div
-                                            style={{
-                                                backgroundColor: "#6f42c1",
-                                            }}
-                                            className={styles.icon}
-                                        >
-                                            <i className="fas fa-copy"></i>
-                                        </div>
-                                        <div>
-                                            <div className={styles.name}>
-                                                Total Booking
-                                            </div>
-                                            <div className={styles.value}>
-                                                1,245
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <progress
-                                        id="progress"
-                                        value="40"
-                                        max="100"
-                                    >
-                                        40%
-                                    </progress>
-                                </div>
+                                <Cart color={'#6f42c1'} icon={'fas fa-copy'} title={'Total Booking'} value={bookings.length}/>
                             </div>
                             <div className="col l-3 c-12">
-                                <div
-                                    className={clsx(
-                                        styles.cartItem,
-                                        theme==="light"
-                                            ? "shadow_light"
-                                            : "shadow"
-                                    )}
-                                >
-                                    <div className={styles.detail}>
-                                        <div
-                                            style={{
-                                                backgroundColor: "#fd7e14",
-                                            }}
-                                            className={styles.icon}
-                                        >
-                                            <i className="fas fa-bed"></i>
-                                        </div>
-                                        <div>
-                                            <div className={styles.name}>
-                                                Rooms Available
-                                            </div>
-                                            <div className={styles.value}>
-                                                287
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <progress
-                                        id="progress"
-                                        value="40"
-                                        max="100"
-                                    >
-                                        40%
-                                    </progress>
-                                </div>
+                                <Cart color={'#fd7e14'} icon={'fas fa-bed'} title={'Rooms Available'} value={quantity}/>
                             </div>
                             <div className="col l-3 c-12">
-                                <div
-                                    className={clsx(
-                                        styles.cartItem,
-                                        theme==="light"
-                                            ? "shadow_light"
-                                            : "shadow"
-                                    )}
-                                >
-                                    <div className={styles.detail}>
-                                        <div
-                                            style={{
-                                                backgroundColor: "#198754",
-                                            }}
-                                            className={styles.icon}
-                                        >
-                                            <i className="fas fa-users"></i>
-                                        </div>
-                                        <div>
-                                            <div className={styles.name}>
-                                                New Customers
-                                            </div>
-                                            <div className={styles.value}>
-                                                1,532
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <progress
-                                        id="progress"
-                                        value="40"
-                                        max="100"
-                                    >
-                                        40%
-                                    </progress>
-                                </div>
+                                <Cart color={'#198754'} icon={'fas fa-users'} title={'Staffs'} value={staffs.length}/>
                             </div>
                             <div className="col l-3 c-12">
-                                <div
-                                    className={clsx(
-                                        styles.cartItem,
-                                        theme==="light"
-                                            ? "shadow_light"
-                                            : "shadow"
-                                    )}
-                                >
-                                    <div className={styles.detail}>
-                                        <div
-                                            style={{
-                                                backgroundColor: "#0dcaf0",
-                                            }}
-                                            className={styles.icon}
-                                        >
-                                            <i className="fas fa-dollar-sign"></i>
-                                        </div>
-                                        <div>
-                                            <div className={styles.name}>
-                                                Total Revenue
-                                            </div>
-                                            <div className={styles.value}>
-                                                $22,567
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <progress
-                                        id="progress"
-                                        value="40"
-                                        max="100"
-                                    >
-                                        40%
-                                    </progress>
-                                </div>
+                                <Cart color={'#0dcaf0'} icon={'fas fa-dollar-sign'} title={'Total Revenue'} value={new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(bookings.reduce((value, booking)=> value + booking.totalPrice, 0)*1000)}/>
                             </div>
                             <div className="col l-8 c-12">
                                 <div

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import clsx from "clsx";
 import { useStore } from "../Dashboard";
-import styles from "./Slidebar.module.scss";
+import styles from "./Sidebar.module.scss";
 
-const Slidebar = () => {
+const Sidebar = () => {
     const history = useHistory();
     const [isOpen, setIsOpen] = useState(false);
     const [menu, setMenu] = useState("home");
@@ -17,22 +17,22 @@ const Slidebar = () => {
         }
     };
 
-    const { staff, resizeSlidebar, theme, slidebarTheme } = useStore()
+    const { staff, resizeSidebar, theme, sidebarTheme } = useStore()
 
     return (
         <>
             <div
                 className={clsx(
-                    styles.slidebar,{
-                        [styles.light]: slidebarTheme === "light",
-                        [styles.resize]: resizeSlidebar === true
+                    styles.sidebar,{
+                        [styles.light]: sidebarTheme === "light",
+                        [styles.resize]: resizeSidebar === true
                     },theme === "light" ? 'shadow_light' : 'shadow')}
             >
                 <div title="Hotel" className={styles.title} onClick={() => history.push("/home")}>
                     <i className="fas fa-hotel"></i>
                     Hotel
                 </div>
-                <div className={styles.slidebarContent}>
+                <div className={styles.sidebarContent}>
                     <div className={styles.staffInfor}>
                         <i
                             className={clsx(
@@ -57,10 +57,10 @@ const Slidebar = () => {
                             <i title="Lock" className="fas fa-lock"></i>
                         </div>
                     </div>
-                    <div className={styles.slidebarList}>
+                    <div className={styles.sidebarList}>
                         <div className={styles.title}>-- MAIN</div>
                         <div
-                            className={clsx(styles.slidebarItem, {
+                            className={clsx(styles.sidebarItem, {
                                 [styles.open]: menu === "home" && isOpen,
                             })}
                         >
@@ -75,7 +75,7 @@ const Slidebar = () => {
                             </Link>
                         </div>
                         <div
-                            className={clsx(styles.slidebarItem, {
+                            className={clsx(styles.sidebarItem, {
                                 [styles.open]: menu === "room" && isOpen,
                             })}
                         >
@@ -120,7 +120,7 @@ const Slidebar = () => {
                             </div>
                         </div>
                         <div
-                            className={clsx(styles.slidebarItem, {
+                            className={clsx(styles.sidebarItem, {
                                 [styles.open]: menu === "booking" && isOpen,
                             })}
                         >
@@ -153,7 +153,7 @@ const Slidebar = () => {
                             </div>
                         </div>
                         <div
-                            className={clsx(styles.slidebarItem, {
+                            className={clsx(styles.sidebarItem, {
                                 [styles.open]: menu === "service" && isOpen,
                             })}
                         >
@@ -187,7 +187,7 @@ const Slidebar = () => {
                             </div>
                         </div>
                         <div
-                            className={clsx(styles.slidebarItem, {
+                            className={clsx(styles.sidebarItem, {
                                 [styles.open]: menu === "staff" && isOpen,
                             })}
                         >
@@ -226,4 +226,4 @@ const Slidebar = () => {
     );
 };
 
-export default Slidebar;
+export default Sidebar;

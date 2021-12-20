@@ -2,7 +2,7 @@ import React, { useState, useEffect, createContext, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Switch, useParams, Redirect } from 'react-router-dom';
 import clsx from 'clsx';
-import Slidebar from './Slidebar/Slidebar';
+import Sidebar from './Sidebar/Sidebar';
 import Navbar from './Navbar/Navbar';
 import Setting from './Setting/Setting';
 import Home from './Home/Home';
@@ -15,7 +15,6 @@ import PageNotFound from '../../components/PageNotFound/PageNotFound';
 import Login from './Auth/Login';
 import { getAll as getAllBooking } from '../../store/reducer/bookingSlice';
 import { getAll as getAllRoom } from '../../store/reducer/roomSlice';
-import { getAll as getAllService } from '../../store/reducer/serviceSlice';
 import { getAll as getAllStaff, staffSelector } from '../../store/reducer/staffSlice';
 import styles from "./Dashboard.module.scss";
 
@@ -39,8 +38,8 @@ const Dashboard = () => {
         slug = slug.join('-')
     }
     const [theme, setTheme] = useState('dark')
-    const [resizeSlidebar, setResizeSlidebar] = useState(false)
-    const [slidebarTheme, setSlidebarTheme] = useState('dark')
+    const [resizeSidebar, setResizeSidebar] = useState(false)
+    const [sidebarTheme, setSidebarTheme] = useState('dark')
     const [openSetting, setOpenSetting] = useState(false)
     const [navbarTheme, setNavbarTheme] = useState('#1a202e')
     const [deleteConfirm, setDeleteConfirm] = useState({
@@ -56,11 +55,11 @@ const Dashboard = () => {
         slug,
         staff,
         theme,
-        resizeSlidebar,
-        setResizeSlidebar,
+        resizeSidebar,
+        setResizeSidebar,
         setTheme,
-        slidebarTheme,
-        setSlidebarTheme,
+        sidebarTheme,
+        setSidebarTheme,
         openSetting,
         setOpenSetting,
         navbarStyle,
@@ -73,7 +72,6 @@ const Dashboard = () => {
     useEffect(async () => {
         await dispatch(getAllBooking())
         await dispatch(getAllRoom())
-        await dispatch(getAllService())
         await dispatch(getAllStaff())
         setLoading(false)
     }, [])
@@ -91,10 +89,10 @@ const Dashboard = () => {
                 <div className={clsx(styles.dashboard,{[styles.light]: theme === 'light'})}>
                     {loading ? <Preload /> :
                         <>
-                            <div className={clsx(styles.colLeft,{[styles.resize]: resizeSlidebar === true})}>
-                                <Slidebar/>
+                            <div className={clsx(styles.colLeft,{[styles.resize]: resizeSidebar === true})}>
+                                <Sidebar/>
                             </div>
-                            <div className={clsx(styles.colRight,{[styles.resize]: resizeSlidebar === true})}>
+                            <div className={clsx(styles.colRight,{[styles.resize]: resizeSidebar === true})}>
                                 <Navbar/>
                                 <Setting/>
                                 <div className={styles.app}>

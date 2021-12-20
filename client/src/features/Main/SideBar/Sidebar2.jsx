@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { roomSelector } from '../../../store/reducer/roomSlice';
 import { useStore } from "../Content";
-import styles from "./Slidebar.module.scss";
+import styles from "./Sidebar.module.scss";
 
-const Slidebar2 = () => {
+const Sidebar2 = () => {
     const { bookingForm, numberDay } = useStore();
     const { room } = useSelector(roomSelector)
 
@@ -15,11 +15,11 @@ const Slidebar2 = () => {
     if (room) {
         return (
             <>
-                <div className={styles.slidebar + " " + styles.slidebar2}>
+                <div className={styles.sidebar + " " + styles.sidebar2}>
                     <span className={styles.roomName}>{room.name}</span>
                     <img src={process.env.REACT_APP_API_URL + room.images[0]} alt='' />
                     <div className={styles.title}>YOUR RESERVATION</div>
-                    <div className={styles.slidebarInfor}>
+                    <div className={styles.sidebarInfor}>
                         <div className='grid'>
                             <div className='row no-gutters'>
                                 <div className='col l-6 c-6'>
@@ -79,4 +79,4 @@ const Slidebar2 = () => {
     }
 }
 
-export default Slidebar2;
+export default Sidebar2;

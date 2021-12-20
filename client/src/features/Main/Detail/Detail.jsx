@@ -13,7 +13,7 @@ import {
     setRoom,
     loadRoom,
 } from "../../../store/reducer/roomSlice";
-import DateChoose from "../SlideBar/Calender/DateChoose";
+import DateChoose from "../SideBar/Calender/DateChoose";
 import "./Detail.scss";
 import "swiper/swiper.scss";
 import styles from "../Content/RoomCart/RoomCart.module.scss";
@@ -237,7 +237,7 @@ const Detail = ({ bookingForm, setbookingForm, numberDay }) => {
                             </div>
                         </div>
                         <div className="col l-4 c-12">
-                            <div className="slidebar">
+                            <div className="sidebar">
                                 <DateChoose
                                     bookingForm={bookingForm}
                                     setbookingForm={setbookingForm}

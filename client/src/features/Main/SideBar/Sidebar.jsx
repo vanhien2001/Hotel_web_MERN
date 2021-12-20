@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAll, serviceSelector } from "../../../store/reducer/serviceSlice";
 import DateChoose from "./Calender/DateChoose";
 import { useStore } from "../Content";
-import styles from "./Slidebar.module.scss";
+import styles from "./Sidebar.module.scss";
 
-const Slidebar = () => {
+const Sidebar = () => {
     const { filter, setFilter, serviceChoose } = useStore();
     const { services } = useSelector(serviceSelector);
     const dispatch = useDispatch();
@@ -73,7 +73,7 @@ const Slidebar = () => {
 
     return (
         <>
-            <div className={styles.slidebar}>
+            <div className={styles.sidebar}>
                 <DateChoose />
                 <div className={styles.filterList}>
                     <div className={styles.filterItem}>
@@ -132,4 +132,4 @@ const Slidebar = () => {
     );
 };
 
-export default Slidebar;
+export default Sidebar;

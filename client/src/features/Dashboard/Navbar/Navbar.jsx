@@ -13,8 +13,8 @@ const Navbar = () => {
     const [openUser, setOpenUser] = useState(false);
 
     const {
-        resizeSlidebar,
-        setResizeSlidebar,
+        resizeSidebar,
+        setResizeSidebar,
         theme,
         navbarStyle,
         setOpenSetting,
@@ -27,14 +27,14 @@ const Navbar = () => {
                 style={navbarStyle}
                 className={clsx(
                     styles.navbar,{
-                        [styles.resize]: resizeSlidebar === true,
+                        [styles.resize]: resizeSidebar === true,
                     }, theme === "light" ? "shadow_light" : "shadow"
                 )}
             >
                 <i
                     className="fas fa-bars"
                     onClick={() => {
-                        setResizeSlidebar(!resizeSlidebar);
+                        setResizeSidebar(!resizeSidebar);
                         setOpenSetting(false);
                         setOpenUser(false);
                     }}
@@ -53,7 +53,7 @@ const Navbar = () => {
                             onClick={() => {
                                 setOpenUser(!openUser);
                                 setOpenSetting(false);
-                                setResizeSlidebar(false);
+                                setResizeSidebar(false);
                             }}
                         ></i>
                         <div
@@ -91,7 +91,7 @@ const Navbar = () => {
                             onClick={() => {
                                 setOpenSetting(!openSetting);
                                 setOpenUser(false);
-                                setResizeSlidebar(false);
+                                setResizeSidebar(false);
                             }}
                             className="fas fa-cog"
                         ></i>

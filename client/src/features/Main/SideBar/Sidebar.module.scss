@@ -2,7 +2,7 @@ $primary_color: #1c1c1d;
 $font_color: #878788;
 $secondary_color: #c19b77;
 
-.slidebarInfor{
+.sidebarInfor{
     background-color: $primary_color;
     padding:12px;
     .bookBtn{
@@ -57,7 +57,7 @@ $secondary_color: #c19b77;
         }
     }
 }
-.slidebar{
+.sidebar{
     .filterList {
         margin: 30px 0;
         .filterItem{
@@ -128,7 +128,7 @@ $secondary_color: #c19b77;
     }
 }
 
-.slidebar.slidebar2{
+.sidebar.sidebar2{
     background-color: $primary_color;
     position: relative;
     span.roomName{
