@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
 import { Navigation, Pagination, Autoplay } from "swiper";
 import { useHistory } from "react-router-dom";
@@ -13,7 +13,16 @@ import {
     setRoom,
     loadRoom,
 } from "../../../store/reducer/roomSlice";
+import {
+    commentSelector,
+    getAll as getComment,
+    addComment,
+    editComment,
+} from "../../../store/reducer/commentSlice";
+import { userSelector } from "../../../store/reducer/userSlice";
 import DateChoose from "../SideBar/Calender/DateChoose";
+import Comment from "./Comment";
+import WriteComment from "./WriteComment";
 import "./Detail.scss";
 import "swiper/swiper.scss";
 import styles from "../Content/RoomCart/RoomCart.module.scss";
@@ -23,10 +32,69 @@ const Detail = ({ bookingForm, setbookingForm, numberDay }) => {
     const dispatch = useDispatch();
     const { bookings } = useSelector(bookingSelector);
     const { rooms, room } = useSelector(roomSelector);
+    const { comments } = useSelector(commentSelector);
+    const { user } = useSelector(userSelector);
+
+    const [showEdit, setShowEdit] = useState("");
+    const [showReply, setShowReply] = useState("");
+    const [comment, setComment] = useState("");
+    const [commentEdit, setCommentEdit] = useState("");
+    const [commentReply, setCommentReply] = useState("");
 
     const booking = (room) => {
         dispatch(setRoom(room));
         history.push("/booking");
+    };
+
+    const handleAddCommnet = (e) => {
+        e.preventDefault();
+        dispatch(
+            addComment({
+                user: user ? user._id : null,
+                room: room ? room._id : null,
+                content: comment,
+            })
+        )
+            .then(() => dispatch(getComment({ room: room._id })))
+            .then(() => {
+                setComment("");
+            });
+    };
+
+    const handleEditComment = (e) => {
+        e.preventDefault();
+        dispatch(
+            editComment({
+                id: showEdit,
+                commentForm: {
+                    user: user ? user._id : null,
+                    room: room ? room._id : null,
+                    content: commentEdit,
+                },
+            })
+        )
+            .then(() => dispatch(getComment({ room: room._id })))
+            .then(() => {
+                setCommentEdit("");
+                setShowEdit("");
+            });
+    };
+
+    const handleReplyComment = (e) => {
+        e.preventDefault();
+        dispatch(
+            addComment({
+                user: user ? user._id : null,
+                room: room ? room._id : null,
+                content: commentReply,
+                parentComment: showReply
+            })
+        )
+            .then(() => dispatch(getComment({ room: room._id })))
+            .then(() => {
+                setCommentReply("");
+                setShowReply("");
+            });
     };
 
     let data;
@@ -57,9 +125,7 @@ const Detail = ({ bookingForm, setbookingForm, numberDay }) => {
                                 <span>{room.size} Ft</span>
                             </div>
                             <div className={styles.roomDesc}>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Integer vel molestie nisl. Duis
-                                ac mi leo.
+                                {room.description}
                             </div>
                             <button onClick={() => booking(room)}>
                                 BOOK NOW FOR {room.price} $
@@ -108,13 +174,44 @@ const Detail = ({ bookingForm, setbookingForm, numberDay }) => {
         });
     }
 
-    var swiper;
+    let commentData;
+    if (comments && comments.length > 0) {
+        commentData = comments.map((index) => {
+            return (
+                <div className="comment">
+                    <Comment comment={index} handleReply={() => setShowReply(index._id)} setShowEdit={setShowEdit} setCommentEdit={setCommentEdit}/>
+                    {showEdit == index._id && (
+                        <WriteComment title="Sửa bình luận" handleSubmit={handleEditComment} handleOnChange={(e)=>setCommentEdit(e.target.value)} handleCancel={()=>setShowEdit('')} value={commentEdit}/>
+                    )}
+                    {index.childComment &&
+                        index.childComment.length > 0 &&
+                        index.childComment.map((childComment) => {
+                            return (
+                                <>
+                                <Comment comment={childComment} handleReply={() => setShowReply(index._id)} setShowEdit={setShowEdit} setCommentEdit={setCommentEdit} reply={true}/>
+                                {showEdit == childComment._id && (
+                                    <WriteComment title="Sửa bình luận" handleSubmit={handleEditComment} handleOnChange={(e)=>setCommentEdit(e.target.value)} handleCancel={()=>setShowEdit('')} value={commentEdit} reply={true}/>
+                                )}                                
+                                </>
+                            );
+                        })}
+                    {showReply == index._id && (
+                        <WriteComment title="Viết bình luận" handleSubmit={handleReplyComment} handleOnChange={(e)=>setCommentReply(e.target.value)} handleCancel={()=>setShowReply('')} value={commentReply} reply={true}/>
+                    )}
+                </div>
+            );
+        });
+    } else {
+        commentData = <span className="emptyComment">Chưa có bình luận</span>;
+    }
 
     useEffect(() => {
         dispatch(getBooking({ room: room ? room._id : "" }));
+        dispatch(getComment({ room: room ? room._id : "" }));
     }, [room]);
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         dispatch(loadRoom());
         dispatch(getAll({ limit: 3 }));
     }, []);
@@ -207,7 +304,7 @@ const Detail = ({ bookingForm, setbookingForm, numberDay }) => {
                                             <div className="col l-4">
                                                 <div className="around_item">
                                                     <img
-                                                        src="/Img/room1.jpg"
+                                                        src="/Img/blog-7.jpg"
                                                         alt=""
                                                     />
                                                     <span>Lounge Bar</span>
@@ -216,7 +313,7 @@ const Detail = ({ bookingForm, setbookingForm, numberDay }) => {
                                             <div className="col l-4">
                                                 <div className="around_item">
                                                     <img
-                                                        src="/Img/room1.jpg"
+                                                        src="/Img/blog-6.jpg"
                                                         alt=""
                                                     />
                                                     <span>Restaurants</span>
@@ -225,7 +322,7 @@ const Detail = ({ bookingForm, setbookingForm, numberDay }) => {
                                             <div className="col l-4">
                                                 <div className="around_item">
                                                     <img
-                                                        src="/Img/room1.jpg"
+                                                        src="/Img/blog-5.jpg"
                                                         alt=""
                                                     />
                                                     <span>Wellness</span>
@@ -233,6 +330,13 @@ const Detail = ({ bookingForm, setbookingForm, numberDay }) => {
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div className="detail_item">
+                                    <div className="title">Bình luận</div>
+                                    <div className="comment_list">
+                                        {commentData}
+                                    </div>
+                                    <WriteComment title="Viết bình luận" handleSubmit={handleAddCommnet} handleOnChange={(e)=>setComment(e.target.value)} showCancel={false} value={comment}/>
                                 </div>
                             </div>
                         </div>
@@ -262,7 +366,7 @@ const Detail = ({ bookingForm, setbookingForm, numberDay }) => {
                         </div>
                         <div className="col l-12 c-12">
                             <div className="detail_item">
-                                <div className="title">Around The Hotel</div>
+                                <div className="title">Similar Rooms</div>
                                 <div className="room_container">
                                     <div className="grid">
                                         <div className="row">{data}</div>

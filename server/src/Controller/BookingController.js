@@ -38,22 +38,6 @@ class BookingController {
                         foreignField: "_id",
                         as: "services"
                     }
-                },
-                {
-                    $lookup: {
-                        from: "staffs",
-                        localField: "staffBooking",
-                        foreignField: "_id",
-                        as: "staffBooking"
-                    }
-                },
-                {
-                    $lookup: {
-                        from: "staffs",
-                        localField: "staffCheckout",
-                        foreignField: "_id",
-                        as: "staffCheckout"
-                    }
                 }
             ]
             if (filter) {

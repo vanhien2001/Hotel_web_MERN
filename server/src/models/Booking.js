@@ -18,14 +18,6 @@ const Booking = new Schema(
         arrive: { type: Date },
         depart: { type: Date },
         totalPrice: { type: Number },
-        staffBooking: {
-            type: Schema.Types.ObjectId,
-            ref: 'staffs'
-        },
-        staffCheckout: {
-            type: Schema.Types.ObjectId,
-            ref: 'staffs'
-        },
         payment: { type: String, required: true },
         payed: { type: Boolean, default: false },
     },

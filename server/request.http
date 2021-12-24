@@ -1,14 +1,15 @@
-GET http://localhost:5000/typeroom
+GET http://localhost:5000/comment
 
 ###
 
-POST  http://localhost:5000/user/changePass
+POST  http://localhost:5000/comment/store
 Content-Type: application/json
 
 {
-    "username": "admin",
-    "password": "vanhien2001",
-    "newPassword": "123"
+    "user": "6161bcdb5318e93abce45f24",
+    "room": "61727b0fa3636ccdad9a787c",
+    "content": "Hello ae safasf",
+    "parentComment": "61c3ee18d244d8a137d57842"
 }
 
 ###
@@ -40,7 +41,7 @@ Content-Type: application/json
 
 ###
 
-GET  http://localhost:5000/booking
+DELETE   http://localhost:5000/comment/61c3ee497f210152c3026441
 
 ###
 
@@ -57,19 +58,11 @@ Content-Type: application/json
 GET  http://localhost:5000/booking
 ###
 
-PUT  http://localhost:5000/staff/615b137fc52a0c9437690a84
+PUT  http://192.168.1.128:5000/comment/61c48936bdb992e32dab503f
 Content-Type: application/json
 
 {
-    "username": "kkkk8888",
-    "password": "kkkk",
-    "firstname": "kkkk",
-    "lastname": "kkkk",
-    "email": "kkkk",
-    "phone": "kkkk",
-    "cmnd": "kkkk",
-    "gender": "male",
-    "address": "kkkk",
-    "position": "kkkk88888",
-    "salary": 696969
+    "user": "6161bcdb5318e93abce45f24",
+    "room": "61743af087a3ae875c1f1e86",
+    "content": "Hello ae 123"
 }
