@@ -1,0 +1,31 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+$theme_color: #1a202e;
+$background_color: #232b3e;
+$btn_color: #3f51b5;
+
+.map{
+    min-width: 1000px;
+    background-color: $theme_color;
+    border-radius: 10px;
+    padding: 24px;
+    &.light{
+        background-color: #fff;
+        .header{
+            background-color: #ebebee;
+        }
+    }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #020910;
+        padding: 20px 24px;
+        font-weight: bold;
+    }
+    iframe{
+        width: 100%;
+        margin-top: 20px;
+    }
+}

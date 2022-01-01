@@ -1,15 +1,22 @@
-GET http://localhost:5000/comment
+GET http://localhost:5000/message
 
 ###
 
-POST  http://localhost:5000/comment/store
+POST  http://localhost:5000/conversation/store
 Content-Type: application/json
 
 {
-    "user": "6161bcdb5318e93abce45f24",
-    "room": "61727b0fa3636ccdad9a787c",
-    "content": "Hello ae safasf",
-    "parentComment": "61c3ee18d244d8a137d57842"
+    "userId": "61c08e80b1f5a80eb8e23155"
+}
+
+###
+POST  http://localhost:5000/message/store
+Content-Type: application/json
+
+{
+    "conversation": "61c89700c7688077c656004f",
+    "user":"61c08e80b1f5a80eb8e23155",
+    "content": "Hello anyone ?"
 }
 
 ###

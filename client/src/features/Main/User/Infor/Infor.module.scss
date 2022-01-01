@@ -10,7 +10,6 @@ $secondary_color: #c19b77;
         margin-bottom: 50px;
     }
     .infor{
-        width: 40%;
         margin: 0 auto;
         .inforItem{
             font-size: 1.6rem;
@@ -30,13 +29,14 @@ $secondary_color: #c19b77;
                 padding: 8px 15px;
                 font-size: 1.6rem;
                 color: $font_color;
-                width: 80%;
+                width: 85%;
                 &.disabled{
                     border: none;
                     padding: 9px 16px;
                 }
             }
             .btn{
+                display: inline-block;
                 font-family: "Poppins", sans-serif;
                 outline: none;
                 border: none;
@@ -45,10 +45,10 @@ $secondary_color: #c19b77;
                 padding: 10px 20px;
                 color: #fff;
                 cursor: pointer;
-                opacity: 0.8;
+                opacity: 0.9;
                 font-size: 1.6rem;
                 margin: 20px 0;
-                min-width: 100px;
+                min-width: 120px;
                 text-align: center;
                 &:hover {
                     opacity: 1;

@@ -6,6 +6,8 @@ import bookingReducer from './reducer/bookingSlice';
 import serviceReducer from './reducer/serviceSlice';
 import staffReducer from './reducer/staffSlice';
 import commentReducer from './reducer/commentSlice';
+import conversationReducer from './reducer/conversationSlice';
+import messageReducer from './reducer/messageSlice';
 
 const store = configureStore({
     reducer: {
@@ -15,7 +17,9 @@ const store = configureStore({
         bookingReducer,
         serviceReducer,
         staffReducer,
-        commentReducer
+        commentReducer,
+        conversationReducer,
+        messageReducer
     }
 })
 

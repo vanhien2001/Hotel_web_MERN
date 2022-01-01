@@ -9,9 +9,11 @@ const Sidebar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [menu, setMenu] = useState("home");
     const toggleMenu = (menu_change) => {
-        if (menu_change === menu) {
+        if (menu_change === "") {
+            setIsOpen(false);
+        }else if(menu_change == menu){
             setIsOpen(!isOpen);
-        } else {
+        }else {
             setMenu(menu_change);
             setIsOpen(true);
         }
@@ -60,13 +62,11 @@ const Sidebar = () => {
                     <div className={styles.sidebarList}>
                         <div className={styles.title}>-- MAIN</div>
                         <div
-                            className={clsx(styles.sidebarItem, {
-                                [styles.open]: menu === "home" && isOpen,
-                            })}
+                            className={clsx(styles.sidebarItem)}
                         >
                             <Link
                                 to="/dashboard/home"
-                                onClick={() => toggleMenu("home")}
+                                onClick={() => toggleMenu("")}
                                 className={styles.name}
                             >
                                 <div>
@@ -218,6 +218,35 @@ const Sidebar = () => {
                                     Add Staff
                                 </Link>
                             </div>
+                        </div>
+                    </div>
+                    <div className={styles.sidebarList}>
+                        <div className={styles.title}>-- APP</div>
+                        <div
+                            className={clsx(styles.sidebarItem)}
+                        >
+                            <Link
+                                to="/dashboard/message"
+                                onClick={() => toggleMenu("")}
+                                className={styles.name}
+                            >
+                                <div>
+                                    <i className="fas fa-comments"></i>Message
+                                </div>
+                            </Link>
+                        </div>
+                        <div
+                            className={clsx(styles.sidebarItem)}
+                        >
+                            <Link
+                                to="/dashboard/map"
+                                onClick={() => toggleMenu("")}
+                                className={styles.name}
+                            >
+                                <div>
+                                    <i className="fas fa-map-marked-alt"></i>Map
+                                </div>
+                            </Link>
                         </div>
                     </div>
                 </div>

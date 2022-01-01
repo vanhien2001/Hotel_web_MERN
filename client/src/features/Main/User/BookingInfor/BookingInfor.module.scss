@@ -10,9 +10,8 @@ $secondary_color: #c19b77;
         margin-bottom: 50px;
     }
     .infor{
-        width: 50%;
-        margin: 0 auto;
         .itemImg{
+            margin-bottom: 20px;
             img{
                 width: 100%;
             }
@@ -20,7 +19,12 @@ $secondary_color: #c19b77;
         .inforItem{
             font-size: 1.6rem;
             color: $font_color;
-            margin-bottom: 30px;
+            .date{
+                display: flex;
+                .item{
+                    flex: 1;
+                }
+            }
             .item{
                 color: $primary_color;
                 margin-bottom: 10px;
@@ -36,7 +40,7 @@ $secondary_color: #c19b77;
                 padding: 10px 20px;
                 color: #fff;
                 cursor: pointer;
-                opacity: 0.8;
+                opacity: 0.9;
                 &:hover {
                     opacity: 1;
                 }
@@ -45,10 +49,10 @@ $secondary_color: #c19b77;
     }
 }
 
-@media screen and (max-width: 739px) {
-    .bookingInfor{
-        .infor{
-            width: 80%;
-        }
-    }
-}
+// @media screen and (max-width: 739px) {
+//     .bookingInfor{
+//         .infor{
+//             width: 80%;
+//         }
+//     }
+// }

@@ -1,0 +1,47 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+
+.account{
+    .sidebar{
+        font-size: 1.8rem;
+        .sidebarHeader{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            img{
+                width: 50px;
+                height: 50px;
+                margin-bottom: 10px;
+                border-radius: 50%;
+            }
+            span{
+                font-size: 2.2rem;
+                font-weight: bold;
+            }
+        }
+        a{
+            text-decoration: none;
+            color: $primary_color;
+            margin-bottom: 10px;
+            .item{
+                padding:20px;
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid rgba(28, 28, 29, 0.3);
+                i{
+                    margin-right: 15px;
+                    font-size: 2.4rem;
+                }
+                &:hover{
+                    background-color: #f9f9f9;
+                    color: $secondary_color;
+                }
+            }
+        }
+    }
+    .content{
+        
+    }
+}

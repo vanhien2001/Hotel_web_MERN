@@ -29,10 +29,6 @@ const Infor = () => {
         })
     }
 
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
-
     if (!user) {
         return <Redirect to="/room" />
     }
@@ -99,12 +95,11 @@ const Infor = () => {
                                     {edit ? 
                                     <div className={styles.btnContainer}>
                                         <button className={styles.btn}>Xác nhận</button>
-                                        <span className={styles.btn} onClick={() => setEdit(false)}>Huỷ bỏ</span>
+                                        <span className={styles.btn} onClick={() => {setEdit(false); setUserInfor(user)}}>Huỷ bỏ</span>
                                     </div>
                                     :
                                     <span className={styles.btn} onClick={() => setEdit(true)}>Chỉnh sửa</span>
                                     }
-                                    <span className={styles.btn} onClick={() => history.push('changePassword')}>Đổi mật khẩu</span>
                                 </div>
                             </div>
                         </div>

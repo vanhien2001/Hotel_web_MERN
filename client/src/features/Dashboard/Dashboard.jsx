@@ -10,6 +10,8 @@ import Room from './Content/Room/Room';
 import Booking from './Content/Booking/Booking';
 import Service from './Content/Service/Service';
 import Staff from './Content/Staff/Staff';
+import Message from './Content/Message/Message';
+import Map from './Content/Map/Map';
 import Preload from './Preload/Preload';
 import PageNotFound from '../../components/PageNotFound/PageNotFound';
 import Login from './Auth/Login';
@@ -75,7 +77,7 @@ const Dashboard = () => {
         await dispatch(getAllStaff())
         setLoading(false)
     }, [])
-    if(!['home','room','service-room','booking','service','staff','login'].includes(slug)){
+    if(!['home','room','service-room','booking','service','staff','login','message','map'].includes(slug)){
         return <PageNotFound/>
     }
     else if( slug === 'login' ){
@@ -106,6 +108,8 @@ const Dashboard = () => {
                                         <Route exact path={`/dashboard/:slug-booking`} component={Booking} />
                                         <Route exact path={`/dashboard/:slug-service`} component={Service} />
                                         <Route exact path={`/dashboard/:slug-staff`} component={Staff} />
+                                        <Route exact path={`/dashboard/message`} component={Message} />
+                                        <Route exact path={`/dashboard/map`} component={Map} />
                                     </Switch>
                                 </div>
                             </div>

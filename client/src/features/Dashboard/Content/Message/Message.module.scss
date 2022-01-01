@@ -1,0 +1,166 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+$theme_color: #1a202e;
+$background_color: #232b3e;
+$btn_color: #3f51b5;
+
+.message{
+    min-width: 1000px;
+    background-color: $theme_color;
+    border-radius: 10px;
+    padding: 24px;
+    &.light{
+        background-color: #fff;
+        .header{
+            background-color: #ebebee;
+        }
+        .conversation{
+            .conversationItem{
+                background-color: #ebebee !important;
+            }
+        }
+    }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #020910;
+        padding: 20px 24px;
+        font-weight: bold;
+    }
+    .body{
+        display: flex;
+        margin-top: 20px;
+        height: 400px;
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+            background-color: transparent;
+            transition: all 3s linear;
+            background-color: $font_color;
+        }
+        .conversation{
+            flex: 1;
+            overflow-y: scroll;
+            margin-right: 12px;
+            .conversationItem{
+                padding: 10px 15px;
+                display: flex;
+                border-radius: 10px;
+                align-items: center;
+                background-color: $background_color;
+                cursor: pointer;
+                opacity: 0.9;
+                & + .conversationItem{
+                    margin-top: 10px;
+                }
+                &:hover{
+                    opacity: 1;
+                }
+                img{
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    margin-right: 20px;
+                }
+                .infor{
+                    flex: 1;
+                    .name{
+                        font-weight: bold;
+                        font-size: 1.6rem;
+                    }
+                    .text{
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+        }
+        .messageContainer{
+            flex: 1;
+            font-size: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            margin-left: 12px;
+            border-radius: 5px;
+            overflow: hidden;
+            .messageHeader{
+                color: #fff;
+                background-color: $secondary_color;
+                text-align: center;
+                padding: 10px;
+                position: relative;
+                i{
+                    position: absolute;
+                    right: 10px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    cursor: pointer;
+                }
+            }
+            .messageBody{
+                flex: 1;
+                height: 200px;
+                background-color: rgb(241, 241, 241);
+                padding: 0 10px;
+                display: flex;
+                flex-direction: column;
+                overflow-y: scroll;
+                .messageText{
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    margin: 5px 0;
+                    &.own{
+                        .content{
+                            align-self: flex-end;
+                            color: #fff;
+                            background-color: rgb(4, 142, 255);
+                        }
+                        .time{
+                            align-self: flex-end;
+                        }
+                    }
+                    .content{
+                        align-self: flex-start;
+                        max-width: 80%;
+                        color: #373D3F;
+                        padding: 5px 10px;
+                        background-color: #fff;
+                        border-radius: 10px;
+                        overflow-wrap: break-word;
+                    }
+                    .time{
+                        padding: 0 5px;
+                        font-size: 0.8rem;
+                        margin-top: 5px;
+                    }
+                }
+            }
+            .messageFooter{
+                background-color: #fff;
+                border: 1px solid rgb(177, 177, 177);
+                display: flex;
+                border-radius: 5px;
+                input{
+                    flex: 1;
+                    border: none;
+                    outline: none;
+                    padding: 10px 20px;
+                    resize: none;
+                }
+                button{
+                    font-size: 1.6rem;
+                    background-color: transparent;
+                    margin-right: 40px;
+                    color: $secondary_color;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

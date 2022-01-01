@@ -1,38 +1,152 @@
-.stickyIcon {
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+
+.message{
     position: fixed;
     bottom: 50px;
     right: 50px;
-    text-decoration: none;
     z-index: 99;
-    .title {
-        position: absolute;
-        padding: 10px 20px;
-        color: #fff;
-        background-color: #c19b77;
-        padding: 2px 8px;
-        font-size: 1rem;
-        transform: translate(20%,-30%);
+    display: flex;
+    flex-direction: column;
+    ::-webkit-scrollbar {
+        width: 6px;
     }
-    .text {
-        font-size: 2rem;
-        text-align: center;
-        color: #fff;
-        background-color: #1c1c1c;
-        padding: 15px;
-        border-radius: 50%;
-        z-index: 99;
+    ::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: transparent;
+        transition: all 3s linear;
+        background-color: $font_color;
     }
-    .icon {
-        z-index: 88;
-        position: absolute;
-        background-color: #1c1c1c;
-        padding: 10px;
-        border-radius: 50%;
-        text-align: center;
-        transform: translate(-60%, 60%);
-        i {
-            font-size: 2rem;
+    .messageContainer{
+        font-size: 1.4rem;
+        margin-bottom: 80px;
+        border: 1px solid #1c1c1d;
+        width: 250px;
+        .messageHeader{
             color: #fff;
+            background-color: $secondary_color;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            i{
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+            }
+        }
+        .messageBody{
+            height: 250px;
+            background-color: rgb(241, 241, 241);
+            padding: 0 10px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+            .messageText{
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                margin: 5px 0;
+                &.own{
+                    .content{
+                        align-self: flex-end;
+                        color: #fff;
+                        background-color: rgb(4, 142, 255);
+                    }
+                    .time{
+                        align-self: flex-end;
+                    }
+                }
+                .content{
+                    align-self: flex-start;
+                    max-width: 80%;
+                    color: #373D3F;
+                    padding: 5px 10px;
+                    background-color: #fff;
+                    border-radius: 10px;
+                    overflow-wrap: break-word;
+                }
+                .time{
+                    padding: 0 5px;
+                    font-size: 0.8rem;
+                    margin-top: 5px;
+                }
+            }
+            button {
+                color: #fff;
+                outline: none;
+                border: none;
+                border-radius: 5px;
+                padding: 10px 20px;
+                background-color: $secondary_color;
+                margin: auto;
+                cursor: pointer;
+                opacity: 0.9;
+                &:hover{
+                    opacity: 1;
+                }
+            }
+        }
+        .messageFooter{
+            background-color: #fff;
+            border: 1px solid rgb(177, 177, 177);
+            input{
+                border: none;
+                outline: none;
+                padding: 8px 15px;
+            }
+            button{
+                font-size: 1.6rem;
+                background-color: transparent;
+                margin-right: 20px;
+                color: $secondary_color;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                opacity: 0.9;
+                &:hover{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    .stickyIcon {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        cursor: pointer;
+        .title {
+            position: absolute;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #c19b77;
+            padding: 2px 8px;
+            font-size: 1rem;
+            transform: translate(15%,-30%);
+        }
+        .text {
+            font-size: 2rem;
+            text-align: center;
+            color: #fff;
+            background-color: #1c1c1c;
+            padding: 12px 15px;
+            border-radius: 50%;
+            z-index: 99;
+        }
+        .icon {
+            z-index: 88;
+            position: absolute;
+            background-color: #1c1c1c;
+            padding: 10px;
+            border-radius: 50%;
+            text-align: center;
+            transform: translate(-60%, 60%);
+            i {
+                font-size: 2rem;
+                color: #fff;
+            }
         }
     }
 }

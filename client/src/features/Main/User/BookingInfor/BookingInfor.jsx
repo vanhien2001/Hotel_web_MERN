@@ -12,29 +12,17 @@ import styles from "./BookingInfor.module.scss";
 const BookingInfor = () => {
     const { user } = useSelector(userSelector);
     const { bookings } = useSelector(bookingSelector);
-    const history = useHistory();
     const dispatch = useDispatch();
-    const [userInfor, setUserInfor] = useState(user);
-
-    const formChange = (e) => {
-        setUserInfor({
-            ...userInfor,
-            [e.target.name]: e.target.value,
-        });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    };
 
     let body;
     if (bookings) {
         body = bookings.map((booking) => {
             const dayArrive = new Date(booking.arrive)
             const dayDepart = new Date(booking.depart)
+            const dayBooking = new Date(booking.createdAt)
             return (
                 <div className="row">
-                    <div className="col l-6 c-12">
+                    <div className="col l-5 c-12">
                         <div className={styles.itemImg}>
                             <img
                                 src={
@@ -45,19 +33,27 @@ const BookingInfor = () => {
                             />
                         </div>
                     </div>
-                    <div className="col l-6 c-12">
+                    <div className="col l-7 c-12">
                         <div className={styles.inforItem}>
                             <div className={styles.item}>
-                                Room Name : <span>{booking.room.name}</span>
+                                Tên phòng : <span>{booking.room.name}</span>
+                            </div>
+                            <div className={styles.date}>
+                                <div className={styles.item}>
+                                    Ngày tới : <span>{dayArrive.getDate()+"-"+(dayArrive.getMonth()+1)+"-"+dayArrive.getFullYear()}</span>
+                                </div>
+                                <div className={styles.item}>
+                                    Ngày đi : <span>{dayDepart.getDate()+"-"+(dayDepart.getMonth()+1)+"-"+dayDepart.getFullYear()}</span>
+                                </div>
                             </div>
                             <div className={styles.item}>
-                                Day arrive : <span>{dayArrive.getDate()+"-"+(dayArrive.getMonth()+1)+"-"+dayArrive.getFullYear()}</span>
+                                Ngày đặt : <span>{dayBooking.getDate()+"-"+(dayBooking.getMonth()+1)+"-"+dayBooking.getFullYear()}</span>
                             </div>
                             <div className={styles.item}>
-                                Day depart : <span>{dayDepart.getDate()+"-"+(dayDepart.getMonth()+1)+"-"+dayDepart.getFullYear()}</span>
+                                Tổng tiền : <span>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(booking.totalPrice*1000)}</span>
                             </div>
                             <div className={styles.item}>
-                                Total Price : <span>{booking.totalPrice}</span>
+                                Tình trạng : <span>{booking.payed ? 'Đã thanh toán' : <span style={{color: "rgba(255, 0, 0, 0.8)"}}>Chưa thanh toán</span>}</span>
                             </div>
                             <div className={styles.item}>
                                 <button className={styles.btn}>Chi tiết</button>
@@ -72,10 +68,6 @@ const BookingInfor = () => {
     useEffect(() => {
         dispatch(getAll(user ? { user: user.id } : ""));
     }, [user]);
-
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
 
     if (!user) {
         return <Redirect to="/room" />;
