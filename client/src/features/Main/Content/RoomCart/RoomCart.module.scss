@@ -96,6 +96,18 @@ $secondary_color: #c19b77;
     }
 }
 
+.empty{
+    color: #fff;
+    font-weight: 300;
+    padding: 10px;
+    background-color: $secondary_color;
+    font-size: 2rem;
+    text-align: center;
+    i{
+        margin-right: 10px;
+    }
+}
+
 @keyframes showRoom {
     from{
         opacity: 0;

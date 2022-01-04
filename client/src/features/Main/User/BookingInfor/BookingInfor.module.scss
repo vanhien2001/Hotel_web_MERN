@@ -46,6 +46,17 @@ $secondary_color: #c19b77;
                 }
             }
         }
+        .empty{
+            padding: 5px;
+            font-size: 1.6rem;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            i{
+                margin-right: 10px;
+                font-size: 4rem;
+            }
+        }
     }
 }
 

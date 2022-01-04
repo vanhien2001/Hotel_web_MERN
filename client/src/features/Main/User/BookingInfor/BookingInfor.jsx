@@ -15,7 +15,7 @@ const BookingInfor = () => {
     const dispatch = useDispatch();
 
     let body;
-    if (bookings) {
+    if (bookings?.length > 0) {
         body = bookings.map((booking) => {
             const dayArrive = new Date(booking.arrive)
             const dayDepart = new Date(booking.depart)
@@ -63,10 +63,14 @@ const BookingInfor = () => {
                 </div>
             );
         });
+    } else {
+        body = (
+            <div className={styles.empty}><i className="far fa-sad-tear"></i><span>Không có thông tin đặt phòng</span></div>
+        )
     }
 
     useEffect(() => {
-        dispatch(getAll(user ? { user: user.id } : ""));
+        dispatch(getAll({ user: user?._id }));
     }, [user]);
 
     if (!user) {

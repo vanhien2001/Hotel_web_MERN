@@ -31,7 +31,7 @@ const StickyIcon = () => {
             ...messageForm,
             content: ''
         })
-        socket.emit('send message')
+        socket.emit('send message',conversations[0]._id)
     }
 
     const handleAddConversation = async () => {
@@ -75,8 +75,8 @@ const StickyIcon = () => {
 
     useEffect(() => {
         if(socket && conversations){
-            socket.on('fetch message', () => {
-                if(user){
+            socket.on('fetch message', (conversationID) => {
+                if(user && conversationID === conversations[0]._id){
                     dispatch(getAll({ conversationId: conversations[0]._id }))
                 }
             })

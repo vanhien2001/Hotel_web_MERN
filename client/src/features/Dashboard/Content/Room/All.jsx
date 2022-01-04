@@ -17,6 +17,7 @@ import Preload from '../../Preload/Preload';
 import DeleteConfirm from '../../Confirm/Delete';
 import handleSort from '../../../../util/sort';
 import styles from "../All.module.scss";
+import Detail from './Detail';
 
 const All = () => {
     const { theme, deleteConfirm, setDeleteConfirm } = useStore()
@@ -30,11 +31,19 @@ const All = () => {
     });
     const [messages, setMessages] = useState(null)
     const [itemChoose, setItemChoose] = useState([]);
+    const [detail, setDetail] = useState({
+        show: false,
+        room: null,
+    });
     const [showDelete, setShowDelete] = useState(false);
 
     const closeModal = (e) => {
         if (e.target === document.querySelector('.'+styles.modal) || e.target === document.querySelector(clsx('.'+styles.modal,'.'+styles.btnClose))) {
             setEdit({
+                show: false,
+                room: null,
+            });
+            setDetail({
                 show: false,
                 room: null,
             });
@@ -103,7 +112,7 @@ const All = () => {
         if(rooms.length > 0) {
             data = rooms.map((room) => {
                 return (
-                    <tr key={room._id}>
+                    <tr key={room._id} style={{cursor: 'pointer'}} onClick={() => setDetail({show: true, room})}>
                         <td>
                             <input
                                 type='checkbox'
@@ -164,11 +173,11 @@ const All = () => {
                         messages={messages.messages}
                     />
                 )}
-                {edit.show && (
+                {(edit.show || detail.show) && (
                     <div className={styles.modal} onClick={(e) => closeModal(e)}>
                         <div className={clsx(styles.modalContainer, theme === "light" ? 'shadow_light' : 'shadow')}>
                             <i title='Close' className={clsx('fas fa-times', styles.btnClose)} onClick={(e) => closeModal(e)}></i>
-                            <Add room={edit.room} setEdit={setEdit} setMessagesAll={setMessages} edit={true} />
+                            {edit.show ? <Add room={edit.room} setEdit={setEdit} setMessagesAll={setMessages} edit={true} /> : <Detail room={detail.room}/>}
                         </div>
                     </div>
                 )}

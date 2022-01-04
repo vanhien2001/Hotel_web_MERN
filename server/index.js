@@ -37,9 +37,9 @@ const io = new Server(server, {
 
 io.on('connection', (socket) => {
     console.log('a user connected');
-    socket.on('send message', () => {
+    socket.on('send message', (conversationID) => {
         console.log('send message')
-        io.emit('fetch message')
+        io.emit('fetch message', conversationID)
     })
     socket.on('disconnect', () => {
         console.log('a user disconnect');

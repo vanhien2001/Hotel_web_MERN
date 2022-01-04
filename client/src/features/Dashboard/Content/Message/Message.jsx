@@ -33,7 +33,7 @@ const Message = () => {
             ...messageForm,
             content: ''
         })
-        socket.emit('send message')
+        socket.emit('send message', conversation._id)
     }
 
     let conversationsData
@@ -83,8 +83,11 @@ const Message = () => {
     useEffect(() => {
         if(conversation){
             if(socket){
-                socket.on('fetch message', () => {
-                    dispatch(getAll({ conversationId: conversation._id }))
+                socket.on('fetch message', (conversationID) => {
+                    if(conversationID === conversation._id){
+                        console.log('fetch')
+                        dispatch(getAll({ conversationId: conversation._id }))
+                    }
                 })
             }
             dispatch(getAll({ conversationId: conversation._id}))

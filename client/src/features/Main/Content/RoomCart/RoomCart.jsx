@@ -29,7 +29,7 @@ const RoomCart = () => {
 
     let data
     let paginationData = []
-    if (rooms) {
+    if (rooms?.length > 0) {
         data = rooms.map(room => {
             return (
                 <div key={room._id} className={`col ${viewGrid ? 'l-6' : 'l-12'} c-12`}>
@@ -82,6 +82,12 @@ const RoomCart = () => {
                 </>
             )
         }
+    }else{
+        data = (
+            <div className="col l-12 c-12">
+                <div className={styles.empty}><i class="fas fa-exclamation-circle"></i>No results</div>
+            </div>
+        )
     }
     useEffect(() => {
         window.scrollTo(0, 0)

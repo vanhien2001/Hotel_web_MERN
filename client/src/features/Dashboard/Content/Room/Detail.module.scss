@@ -1,0 +1,56 @@
+$primary_color: #1c1c1d;
+$font_color: #878788;
+$secondary_color: #c19b77;
+$theme_color: #1a202e;
+$background_color: #232b3e;
+$btn_color: #3f51b5;
+
+.detail{
+    padding: 20px;
+    background-color: #232b3e;
+    // color: #fff;
+    &.light{
+        background-color: #fff;
+    }
+    .header{
+        display: flex;
+        img{
+            width: 50%;
+            margin-right: 12px;
+            border-radius: 5px;
+        }
+        .title{
+            flex: 1;
+            text-align: center;
+            .name{
+                font-size: 3.5rem;
+                font-weight: 500;
+            }
+            .typeroom{
+                font-size: 2rem;
+            }
+            .price{
+                margin-top: 30px;
+            }
+        }
+    }
+    .body{
+        margin-top: 20px;
+        .services{
+            border-top: 1px solid rgba(135, 135, 136, 0.3);
+            padding-top: 20px;
+            margin-top: 20px;
+            font-size: 1.4rem;
+            .title{
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+            .serviceItems{
+                margin-bottom: 10px;
+                i{
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}

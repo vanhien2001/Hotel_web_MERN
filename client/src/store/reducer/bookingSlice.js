@@ -3,6 +3,7 @@ import bookingApi from '../../api/bookingApi';
 
 
 export const getAll = createAsyncThunk('booking/getAll', async (filter = '') => {
+    console.log(filter)
     const response = await bookingApi.getAll(filter)
     return response
 });
