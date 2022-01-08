@@ -1,12 +1,12 @@
-GET http://localhost:5000/message
+GET http://localhost:5000/service/statistics?year=2021
 
 ###
 
-POST  http://localhost:5000/conversation/store
+POST  http://localhost:5000/job/store
 Content-Type: application/json
 
 {
-    "userId": "61c08e80b1f5a80eb8e23155"
+    "name": "Bảo vệ"
 }
 
 ###

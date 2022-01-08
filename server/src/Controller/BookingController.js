@@ -38,7 +38,8 @@ class BookingController {
                         foreignField: "_id",
                         as: "services"
                     }
-                }
+                },
+                { $sort: { createdAt: -1 } }
             ]
             if (filter) {
                 if (filter.onlyDelete) {
@@ -48,7 +49,10 @@ class BookingController {
                         }
                     }
                 }
-                if(filter.user){
+                if (filter.withDelete) {
+                    deFault.shift()
+                }
+                if (filter.user) {
                     aggregate.push(
                         {
                             $match: {
@@ -57,7 +61,7 @@ class BookingController {
                         }
                     )
                 }
-                if(filter.room){
+                if (filter.room) {
                     aggregate.push(
                         {
                             $match: {
@@ -131,7 +135,7 @@ class BookingController {
         if (!id) return res.status(401).json({ success: false, messages: 'Missing id' })
         try {
             const booking = await Booking.updateOne({ _id: id }, req.body, { new: true })
-            if(req.body.user){
+            if (req.body.user) {
                 User.updateOne({ _id: req.body.user }, req.body, { new: true })
             }
             if (!booking) return res.json({ success: false, messages: 'Cant update booking' })
@@ -157,7 +161,7 @@ class BookingController {
         const { ids } = req.query
         if (!ids) return res.status(401).json({ success: false, messages: 'Missing id' })
         try {
-            const booking = await Booking.delete({_id: {$in: ids.map( id => mongoose.Types.ObjectId(id))}})
+            const booking = await Booking.delete({ _id: { $in: ids.map(id => mongoose.Types.ObjectId(id)) } })
             if (!booking) return res.status(401).json({ success: false, messages: 'Cant delete booking' })
             res.json({ success: true, messages: 'Delete successfully' })
         } catch (error) {
@@ -181,11 +185,11 @@ class BookingController {
         const { ids } = req.query
         if (!ids) return res.status(401).json({ success: false, messages: 'Missing id' })
         try {
-            const booking = await Booking.restore({_id: {$in: ids.map( id => mongoose.Types.ObjectId(id))}})
+            const booking = await Booking.restore({ _id: { $in: ids.map(id => mongoose.Types.ObjectId(id)) } })
             if (!booking) return res.status(401).json({ success: false, messages: 'Cant restore booking' })
             res.json({ success: true, messages: 'Restore successfully' })
         } catch (error) {
-            res.status(500).json({ success: false, messages: 'Interval server error'})
+            res.status(500).json({ success: false, messages: 'Interval server error' })
         }
     }
 }

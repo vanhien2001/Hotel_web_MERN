@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import clsx from "clsx";
 import { logout } from "../../../store/reducer/staffSlice";
@@ -8,7 +8,7 @@ import styles from "./Navbar.module.scss";
 
 const Navbar = () => {
     const dispatch = useDispatch();
-    // const history = useHistory()
+    const history = useHistory()
     // const {staff} = useSelector(staffSelector)
     const [openUser, setOpenUser] = useState(false);
 
@@ -62,7 +62,7 @@ const Navbar = () => {
                                 [styles.open]: openUser
                             })}
                         >
-                            <div className={styles.dropdownItem}>
+                            <div className={styles.dropdownItem} onClick={() => {setOpenUser(false);history.push('/dashboard/profile')}}>
                                 <i className="fas fa-user"></i>
                                 <span>Profile</span>
                             </div>

@@ -5,28 +5,35 @@ import clsx from "clsx";
 import { userSelector, load } from "../../../../store/reducer/userSlice";
 import {
     bookingSelector,
-    getAll,
+    getAllWithDelete,
+    deleteBooking
 } from "../../../../store/reducer/bookingSlice";
+import { dateFormat, priceFormat } from '../../../../util/dataFormat';
 import styles from "./BookingInfor.module.scss";
 
 const BookingInfor = () => {
+    const history = useHistory();
     const { user } = useSelector(userSelector);
     const { bookings } = useSelector(bookingSelector);
     const dispatch = useDispatch();
 
+    const handleCancel = async (id) => {
+        console.log(id)
+        await dispatch(deleteBooking(id))
+        await dispatch(getAllWithDelete({user: user?._id}))
+    }
+
     let body;
     if (bookings?.length > 0) {
         body = bookings.map((booking) => {
-            const dayArrive = new Date(booking.arrive)
-            const dayDepart = new Date(booking.depart)
-            const dayBooking = new Date(booking.createdAt)
+            const check = ((new Date(booking.depart)).getTime() - (new Date()).getTime())/(1000 * 3600 * 24) < 2
             return (
                 <div className="row">
                     <div className="col l-5 c-12">
                         <div className={styles.itemImg}>
                             <img
                                 src={
-                                    process.env.REACT_APP_API_URL +
+                                    "http://192.168.1.128:5000" +
                                     booking.room.images[0]
                                 }
                                 alt=""
@@ -40,23 +47,25 @@ const BookingInfor = () => {
                             </div>
                             <div className={styles.date}>
                                 <div className={styles.item}>
-                                    Ngày tới : <span>{dayArrive.getDate()+"-"+(dayArrive.getMonth()+1)+"-"+dayArrive.getFullYear()}</span>
+                                    Ngày tới : <span>{dateFormat(new Date(booking.arrive))}</span>
                                 </div>
                                 <div className={styles.item}>
-                                    Ngày đi : <span>{dayDepart.getDate()+"-"+(dayDepart.getMonth()+1)+"-"+dayDepart.getFullYear()}</span>
+                                    Ngày đi : <span>{dateFormat(new Date(booking.depart))}</span>
                                 </div>
                             </div>
                             <div className={styles.item}>
-                                Ngày đặt : <span>{dayBooking.getDate()+"-"+(dayBooking.getMonth()+1)+"-"+dayBooking.getFullYear()}</span>
+                                Ngày đặt : <span>{dateFormat(new Date(booking.createdAt))}</span>
                             </div>
                             <div className={styles.item}>
-                                Tổng tiền : <span>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(booking.totalPrice*1000)}</span>
-                            </div>
-                            <div className={styles.item}>
-                                Tình trạng : <span>{booking.payed ? 'Đã thanh toán' : <span style={{color: "rgba(255, 0, 0, 0.8)"}}>Chưa thanh toán</span>}</span>
-                            </div>
-                            <div className={styles.item}>
-                                <button className={styles.btn}>Chi tiết</button>
+                                <button className={styles.btn} onClick={()=>history.push(`/account/booking-detail/${booking._id}`)}>Chi tiết</button>
+                                    {booking.deleted ? 
+                                        <button className={clsx(styles.btn, styles.disabled, styles.cancelled)} disabled={true}>
+                                            Đã huỷ
+                                        </button>:
+                                        <button className={clsx(styles.btn, styles.btn_cancel, {[styles.disabled]: check})} onClick={() => handleCancel(booking._id)} disabled={check}>
+                                            Huỷ đơn
+                                        </button>
+                                    }
                             </div>
                         </div>
                     </div>
@@ -70,7 +79,7 @@ const BookingInfor = () => {
     }
 
     useEffect(() => {
-        dispatch(getAll({ user: user?._id }));
+        dispatch(getAllWithDelete({ user: user?._id }));
     }, [user]);
 
     if (!user) {

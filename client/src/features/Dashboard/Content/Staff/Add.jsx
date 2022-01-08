@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import { useStore } from "../../Dashboard";
 import {
@@ -7,11 +7,16 @@ import {
     addStaff,
     editStaff,
 } from '../../../../store/reducer/staffSlice';
+import {
+    getAll as getAllPosition,
+    jobSelector
+} from '../../../../store/reducer/jobSlice';
 import Alert from '../../Alert/Alert';
 import styles from "../Add.module.scss";
 
 const Add = ({ edit, staff, setEdit, setMessagesAll }) => {
     const { theme } = useStore()
+    const { jobs } = useSelector(jobSelector)
     const dispatch = useDispatch();
 
     const [staffForm, setStaffForm] = useState({
@@ -25,7 +30,7 @@ const Add = ({ edit, staff, setEdit, setMessagesAll }) => {
         cmnd: staff ? staff.user.cmnd : '',
         gender: staff ? staff.user.gender : 'Male',
         address: staff ? staff.user.address : '',
-        position: staff ? staff.position : '',
+        position: staff ? staff.position._id : '',
         salary: staff ? staff.salary : ''
     });
 
@@ -79,6 +84,21 @@ const Add = ({ edit, staff, setEdit, setMessagesAll }) => {
         });
     };
 
+    let positionData
+    if(jobs){
+        positionData = jobs.map(job => {
+            return (
+                <option key={job._id} value={job._id}>
+                    {job.name}
+                </option>
+            )
+        })
+    }
+
+    useEffect(() => {
+        dispatch(getAllPosition())
+    }, [])
+
     return (
         <>
             {!staff && messages && (
@@ -104,6 +124,7 @@ const Add = ({ edit, staff, setEdit, setMessagesAll }) => {
                                         value={staffForm.username}
                                         onChange={(e) => formChange(e)}
                                         required
+                                        disabled={staff}
                                     />
                                     <span>Username *</span>
                                 </div>
@@ -117,6 +138,7 @@ const Add = ({ edit, staff, setEdit, setMessagesAll }) => {
                                         value={staffForm.password}
                                         onChange={(e) => formChange(e)}
                                         required
+                                        disabled={staff}
                                     />
                                     <span>Passowrd *</span>
                                 </div>
@@ -200,13 +222,13 @@ const Add = ({ edit, staff, setEdit, setMessagesAll }) => {
                             </div>
                             <div className='col l-6 c-12 m-6'>
                                 <div className={styles.formControl}>
-                                    <input
-                                        type='text'
+                                    <select
                                         name='position'
-                                        placeholder=' '
                                         value={staffForm.position}
                                         onChange={(e) => formChange(e)}
-                                    />
+                                    >
+                                        {positionData}
+                                    </select>
                                     <span>Position</span>
                                 </div>
                             </div>

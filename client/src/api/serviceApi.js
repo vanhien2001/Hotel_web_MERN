@@ -9,6 +9,10 @@ const serviceApi = {
         return axiosClient.get('/service', { params:{...params, onlyDelete: true } })
     },
 
+    getStatistics: (params) => {
+        return axiosClient.get('/service/statistics', { params })
+    },
+
     get: (id) => {
         return axiosClient.get(`/service/${id}`)
     },

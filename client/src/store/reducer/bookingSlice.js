@@ -3,13 +3,17 @@ import bookingApi from '../../api/bookingApi';
 
 
 export const getAll = createAsyncThunk('booking/getAll', async (filter = '') => {
-    console.log(filter)
     const response = await bookingApi.getAll(filter)
     return response
 });
 
 export const getAllDelete = createAsyncThunk('booking/getAllDelete', async (filter = '') => {
     const response = await bookingApi.getAllDelete(filter)
+    return response
+});
+
+export const getAllWithDelete = createAsyncThunk('booking/getAllWithDelete', async (filter = '') => {
+    const response = await bookingApi.getAllWithDelete(filter)
     return response
 });
 
@@ -24,6 +28,7 @@ export const editBooking = createAsyncThunk('booking/editBooking', async ({ id, 
 });
 
 export const deleteBooking = createAsyncThunk('booking/deleteBooking', async (id) => {
+    console.log('hello')
     const response = await bookingApi.delete(id)
     return response
 });
@@ -70,6 +75,17 @@ const bookingSlice = createSlice({
             state.bookingLoading = true;
         })
         builder.addCase(getAllDelete.fulfilled, (state, action) => {
+            state.bookingLoading = false;
+            if (action.payload.success) {
+                state.bookings = action.payload.bookings;
+            } else {
+                state.bookings = null;
+            }
+        })
+        builder.addCase(getAllWithDelete.pending, (state, action) => {
+            state.bookingLoading = true;
+        })
+        builder.addCase(getAllWithDelete.fulfilled, (state, action) => {
             state.bookingLoading = false;
             if (action.payload.success) {
                 state.bookings = action.payload.bookings;

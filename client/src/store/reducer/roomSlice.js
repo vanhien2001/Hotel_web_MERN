@@ -12,6 +12,11 @@ export const getAllDelete = createAsyncThunk('room/getAllDelete', async (filter)
     return response
 });
 
+export const getStatistics = createAsyncThunk('room/getStatistics', async (filter) => {
+    const response = await roomApi.getStatistics(filter)
+    return response
+});
+
 export const addRoom = createAsyncThunk('room/addRoom', async (roomForm) => {
     const response = await roomApi.add(roomForm)
     return response
@@ -49,7 +54,8 @@ const roomSlice = createSlice({
         roomLoading: false,
         rooms: null,
         quantity: null,
-        room: null
+        room: null,
+        statistics: null
     },
     reducers: {
         setRoom(state, action) {
@@ -87,6 +93,14 @@ const roomSlice = createSlice({
             } else {
                 state.rooms = null;
                 state.quantity = null;
+            }
+        })
+        builder.addCase(getStatistics.fulfilled, (state, action) => {
+            state.roomLoading = false;
+            if (action.payload.success) {
+                state.statistics = action.payload.statistics;
+            } else {
+                state.statistics = null;
             }
         })
         builder.addCase(deleteRoom.pending, (state, action) => {

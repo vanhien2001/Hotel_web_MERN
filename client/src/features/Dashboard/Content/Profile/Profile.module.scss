@@ -1,0 +1,57 @@
+$theme_color: #1a202e;
+$background_color: #232b3e;
+$btn_color: #3f51b5;
+
+.profile{
+    &.light {
+        .cart{
+            background-color: #fff;
+        }
+    }
+    .cart{
+        background-color: $theme_color;
+        padding: 15px;
+        border-radius: 10px;
+        transition: all 0.3s linear;
+        &.left{
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.6rem;
+            padding: 30px 15px;
+            img{
+                border-radius: 50%;
+                height: 80px;
+                width: 80px;
+            }
+            .name{
+                margin-top: 20px;
+                font-size: 2rem;
+                font-weight: bold;
+            }
+            .item{
+                margin-top: 10px;
+                i{
+                    margin-right: 10px;
+                    font-size: 2rem;
+                }
+            }
+        }
+        &.right{
+            padding: 15px;
+            .title{
+                font-size: 2rem;
+                font-weight: bold;
+                margin-bottom: 30px;
+            }
+            .infor{
+                margin-bottom: 20px;
+                font-size: 1.6rem;
+                & > div{
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

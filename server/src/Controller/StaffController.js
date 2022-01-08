@@ -24,7 +24,16 @@ class StaffController {
                         as: 'user'
                     }
                 },
-                { $unwind: '$user' }
+                { $unwind: '$user' },
+                {
+                    $lookup: {
+                        from: 'jobs',
+                        localField: 'position',
+                        foreignField: '_id',
+                        as: 'position'
+                    }
+                },
+                { $unwind: '$position' }
             ]
             if (filter) {
                 if (filter.onlyDelete) {
@@ -137,7 +146,16 @@ class StaffController {
                         as: 'user'
                     }
                 },
-                { $unwind: '$user' }
+                { $unwind: '$user' },
+                {
+                    $lookup: {
+                        from: 'jobs',
+                        localField: 'position',
+                        foreignField: '_id',
+                        as: 'position'
+                    }
+                },
+                { $unwind: '$position' }
             ])
             if (!staff[0])
                 return res.status(400).json({ success: false, message: 'Staff not found' })

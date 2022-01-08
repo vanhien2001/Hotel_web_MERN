@@ -117,7 +117,7 @@ const All = () => {
                         <td>{staff.user.phone}</td>
                         <td>{staff.user.email}</td>
                         <td>{staff.user.address}</td>
-                        <td>{staff.position}</td>
+                        <td>{staff.position.name}</td>
                         <td>
                             {showDelete ? 
                                 <button title='Restore' className={styles.restoreBtn} onClick={() => handleRestoreStaff(staff._id)}>Restore</button> :

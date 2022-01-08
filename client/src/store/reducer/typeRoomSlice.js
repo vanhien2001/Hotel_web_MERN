@@ -12,6 +12,11 @@ export const getAllDelete = createAsyncThunk('typeRoom/getAllDelete', async (fil
     return response
 });
 
+export const getStatistics = createAsyncThunk('typeRoom/getStatistics', async (filter) => {
+    const response = await typeRoomApi.getStatistics(filter)
+    return response
+});
+
 export const addTypeRoom = createAsyncThunk('room/addTypeRoom', async (roomForm) => {
     const response = await typeRoomApi.add(roomForm)
     return response
@@ -47,6 +52,7 @@ const typeRoomSlice = createSlice({
     initialState: {
         typeRoomLoading: false,
         typeRoom: null,
+        statistics: null
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -70,6 +76,15 @@ const typeRoomSlice = createSlice({
                 state.typeRoom = action.payload.typeRooms;
             } else {
                 state.typeRoom = null;
+            }
+        })
+        builder.addCase(getStatistics.fulfilled, (state, action) => {
+            state.typeRoomLoading = false;
+            if (action.payload.success) {
+                console.log(action.payload.statistics)
+                state.statistics = action.payload.statistics;
+            } else {
+                state.statistics = null;
             }
         })
         builder.addCase(deleteTypeRoom.pending, (state, action) => {

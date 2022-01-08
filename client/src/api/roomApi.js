@@ -9,6 +9,10 @@ const roomApi = {
         return axiosClient.get('/room', { params:{...params, onlyDelete: true } })
     },
 
+    getStatistics: (params) => {
+        return axiosClient.get('/room/statistics', { params })
+    },
+
     get: (id) => {
         return axiosClient.get(`/room/${id}`)
     },

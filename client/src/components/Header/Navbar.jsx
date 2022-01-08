@@ -55,7 +55,7 @@ const Navbar = ({ slug }) => {
                                         <Link to='/account/infor'>Thông tin cá nhân</Link>
                                     </div>
                                     <div className={styles.userItem}>
-                                        <Link to='/account/bookingInfor'>Thông tin đặt phòng</Link>
+                                        <Link to='/account/booking-infor'>Thông tin đặt phòng</Link>
                                     </div>
                                     <div className={styles.userItem}>
                                         <a href='#' onClick={(e) => userLogout(e)}>Đăng xuất</a>

@@ -45,11 +45,12 @@ const Sidebar = () => {
                         <div className={styles.staffName}>
                             {staff.user.firstname}
                         </div>
-                        <div className={styles.staffJob}>{staff.position}</div>
+                        <div className={styles.staffJob}>{staff.position.name}</div>
                         <div className={styles.staffFeature}>
                             <i
                                 title="Profile"
                                 className="fas fa-user-circle"
+                                onClick={() => history.push("/dashboard/profile")}
                             ></i>
                             <i title="Email" className="far fa-envelope"></i>
                             <i
@@ -216,6 +217,12 @@ const Sidebar = () => {
                                     to="/dashboard/add-staff"
                                 >
                                     Add Staff
+                                </Link>
+                                <Link
+                                    className={styles.detail}
+                                    to="/dashboard/position-staff"
+                                >
+                                    Position
                                 </Link>
                             </div>
                         </div>

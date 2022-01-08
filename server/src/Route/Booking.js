@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const bookingController = require('../Controller/BookingController')
+const bookingController = require('../Controller/BookingController');
 
 router.get('/', bookingController.showAll)
 router.get('/restore', bookingController.restoreMulti) // Can't use put or patch request ?????

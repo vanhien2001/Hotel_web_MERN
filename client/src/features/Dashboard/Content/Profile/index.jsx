@@ -1,19 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
+import Profile from './Profile';
 import { useStore } from "../../Dashboard";
-import Add from './Add';
-import All from './All';
 import styles from "../Content.module.scss";
 
-const Service = () => {
-    const {  type, theme } = useStore();
-    
+const ProfileContainer = () => {
+    const { theme } = useStore();
+
     return (
-        <>
-            <div className={clsx(styles.content,{[styles.light]: theme === "light"})}>
+        <div className={clsx(styles.content,{[styles.light]: theme === "light"})}>
                 <div className={styles.header}>
-                    <span>{type === 'all' ? 'All' : 'Add'} Service</span>
+                    <span>Profile</span>
                     <Link title="Home" to='/dashboard' className={clsx(styles.link,styles.icon)}>
                         <i className='fas fa-home'></i>
                     </Link>
@@ -23,17 +21,17 @@ const Service = () => {
                     </Link>
                     /
                     <Link
-                        to={`/dashboard/all-service`}
+                        to={`/dashboard/profile`}
                         className={styles.link}
                     >
-                        Service
+                        Profile
                     </Link>
-                    / {type === 'all' ? 'All' : 'Add'}
                 </div>
-                <div className={styles.body}>{type === 'all' ? <All /> : <Add />}</div>
+                <div className={styles.body}>
+                    <Profile/>
+                </div>
             </div>
-        </>
-    );
-};
+    )
+}
 
-export default Service;
+export default ProfileContainer

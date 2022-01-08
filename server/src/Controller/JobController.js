@@ -1,9 +1,7 @@
-const Service = require('../models/Service');
-const Booking = require('../models/Booking');
+const Job = require('../models/Job');
 const mongoose = require('mongoose');
-const serviceValidator = require('../Validator/Service')
 
-class ServiceController {
+class JobController {
     async showAll(req, res) {
         try {
             const filter = req.query || null
@@ -42,8 +40,8 @@ class ServiceController {
                     )
                 }
             }
-            const services = await Service.aggregate(aggregate)
-            res.json({ success: true, services })
+            const jobs = await Job.aggregate(aggregate)
+            res.json({ success: true, jobs })
         } catch (error) {
             res.status(500).json({ success: false, messages: 'Interval server error' })
         }
@@ -53,26 +51,24 @@ class ServiceController {
         const { id } = req.params
         if (!id) return res.status(401).json({ success: false, messages: 'Missing id' })
         try {
-            const service = await Service.findById(id)
-            if (!service) return res.json({ success: false, messages: 'Invalid service' })
-            res.json({ success: true, service })
+            const job = await Job.findById(id)
+            if (!job) return res.json({ success: false, messages: 'Invalid job' })
+            res.json({ success: true, job })
         } catch (error) {
             res.status(500).json({ success: false, messages: 'Interval server error' })
         }
     }
 
     async store(req, res) {
-        const { error } = serviceValidator(req.body)
-        if( error ) return res.status(400).json({success: false, messages: error.details[0].message })
         try {
-            const service = await Service.findOne({ name: req.body.name })
-            if (service) {
-                console.log(service.name)
-                return res.status(400).json({ success: false, messages: 'Service already exsist' })
+            const job = await Job.findOne({ name: req.body.name })
+            if (job) {
+                console.log(job.name)
+                return res.status(400).json({ success: false, messages: 'Job already exsist' })
             }
-            const newService = new Service(req.body)
-            await newService.save()
-            res.json({ success: true, messages: 'Add successfully', service: newService })
+            const newjob = new Job(req.body)
+            await newjob.save()
+            res.json({ success: true, messages: 'Add successfully', job: newjob })
         } catch (error) {
             res.status(500).json({ success: false, messages: 'Interval server error' })
         }
@@ -81,12 +77,10 @@ class ServiceController {
     async update(req, res) {
         const { id } = req.params
         if (!id) return res.status(401).json({ success: false, messages: 'Missing id' })
-        const { error } = serviceValidator(req.body)
-        if( error ) return res.status(400).json({success: false, messages: error.details[0].message })
         try {
-            const service = await Service.updateOne({ _id: id }, req.body, { new: true })
-            if (!service) return res.json({ success: false, messages: 'Cant update service' })
-            res.json({ success: true, messages: 'Update successfully', service: service })
+            const job = await Job.updateOne({ _id: id }, req.body, { new: true })
+            if (!job) return res.json({ success: false, messages: 'Cant update job' })
+            res.json({ success: true, messages: 'Update successfully' })
         } catch (error) {
             res.status(500).json({ success: false, messages: 'Interval server error' })
         }
@@ -96,8 +90,8 @@ class ServiceController {
         const { id } = req.params
         if (!id) return res.status(401).json({ success: false, messages: 'Missing id' })
         try {
-            const service = await Service.delete({ _id: id })
-            if (!service) return res.status(401).json({ success: false, messages: 'Cant delete service' })
+            const job = await Job.delete({ _id: id })
+            if (!job) return res.status(401).json({ success: false, messages: 'Cant delete job' })
             res.json({ success: true, messages: 'Delete successfully' })
         } catch (error) {
             res.status(500).json({ success: false, messages: 'Interval server error' })
@@ -108,8 +102,8 @@ class ServiceController {
         const {ids} = req.query
         if (!ids) return res.status(401).json({ success: false, messages: 'Missing id' })
         try {
-            const service = await Service.delete({_id: {$in: ids.map( id => mongoose.Types.ObjectId(id))}})
-            if (!service) return res.status(401).json({ success: false, messages: 'Cant delete service' })
+            const job = await Job.delete({_id: {$in: ids.map( id => mongoose.Types.ObjectId(id))}})
+            if (!job) return res.status(401).json({ success: false, messages: 'Cant delete job' })
             res.json({ success: true, messages: 'Delete successfully' })
         } catch (error) {
             res.status(500).json({ success: false, messages: 'Interval server error' })
@@ -120,8 +114,8 @@ class ServiceController {
         const { id } = req.params
         if (!id) return res.status(401).json({ success: false, messages: 'Missing id' })
         try {
-            const service = await Service.restore({ _id: id })
-            if (!service) return res.status(401).json({ success: false, messages: 'Cant restore service' })
+            const job = await Job.restore({ _id: id })
+            if (!job) return res.status(401).json({ success: false, messages: 'Cant restore job' })
             res.json({ success: true, messages: 'Restore successfully' })
         } catch (error) {
             res.status(500).json({ success: false, messages: 'Interval server error a' })
@@ -132,50 +126,13 @@ class ServiceController {
         const { ids } = req.query
         if (!ids) return res.status(401).json({ success: false, messages: 'Missing id' })
         try {
-            const service = await Service.restore({_id: {$in: ids.map( id => mongoose.Types.ObjectId(id))}})
-            if (!service) return res.status(401).json({ success: false, messages: 'Cant restore service' })
+            const job = await Job.restore({_id: {$in: ids.map( id => mongoose.Types.ObjectId(id))}})
+            if (!job) return res.status(401).json({ success: false, messages: 'Cant restore job' })
             res.json({ success: true, messages: 'Restore successfully' })
         } catch (error) {
             res.status(500).json({ success: false, messages: 'Interval server error' })
         }
     }
-
-    async statistics(req, res) {
-        const { year } = req.query
-        try {
-            const statistics = await Booking.aggregate([
-                {
-                    $match: {
-                        deleted: { $ne: true }
-                    }
-                },
-                { $set: { year: {$year: "$depart"}}},
-                {
-                    $match: {
-                        year: parseInt(year) || (new Date()).getFullYear()
-                    }
-                },
-                {
-                    $lookup: {
-                        from: "services",
-                        localField: "services",
-                        foreignField: "_id",
-                        as: "services"
-                    }
-                },
-                { $unwind: "$services"},
-                {
-                    $group: {
-                        _id: "$services._id",
-                        totalPrice: { $sum: "$services.price"}
-                    }
-                },
-            ])
-            res.json({ success: true, statistics })
-        } catch (error) {
-            res.status(500).json({ success: false, messages: error.message })
-        }
-    }
 }
 
-module.exports = new ServiceController()
+module.exports = new JobController()

@@ -4,10 +4,19 @@ import clsx from 'clsx';
 import { useStore } from "../../Dashboard";
 import Add from './Add';
 import All from './All';
+import Position from './Position';
 import styles from "../Content.module.scss";
 
 const Staff = () => {
-    const {  type, theme } = useStore()
+    const { type, theme } = useStore()
+    let body;
+    if(type === 'all'){
+        body = <All />
+    }else if(type === 'add'){
+        body = <Add />
+    }else{
+        body =  <Position />
+    }
     return (
         <>
             <div className={clsx(styles.content,{[styles.light]: theme === "light"})}>
@@ -31,7 +40,7 @@ const Staff = () => {
                     </Link>
                     / {type === 'all' ? 'All' : 'Add'}
                 </div>
-                <div className={styles.body}>{type === 'all' ? <All /> : <Add />}</div>
+                <div className={styles.body}>{body}</div>
             </div>
         </>
     );

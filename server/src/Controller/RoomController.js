@@ -260,6 +260,45 @@ class RoomController {
             res.status(500).json({ success: false, messages: 'Interval server error' })
         }
     }
+
+    async statistics(req, res) {
+        const { year } = req.query
+        try {
+            const statistics = await Booking.aggregate([
+                {
+                    $match: {
+                        deleted: { $ne: true },
+
+                    }
+                },
+                { $set: { year: {$year: "$depart"}}},
+                {
+                    $match: {
+                        year: parseInt(year) || (new Date()).getFullYear()
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "rooms",
+                        localField: "room",
+                        foreignField: "_id",
+                        as: "room"
+                    }
+                },
+                { $unwind: '$room' },
+                {
+                    $group: {
+                        _id: "$room",
+                        count: {$sum: {$subtract: [{ $dayOfYear: "$depart"},{ $dayOfYear: "$arrive"}]}},
+                        // totalPrice: { $sum: {$multiply: ["$room.price", "$count"]}}
+                    }
+                }
+            ])
+            res.json({ success: true, statistics})
+        } catch (error) {
+            res.status(500).json({ success: false, messages: error.message })
+        }
+    }
 }
 
 module.exports = new RoomController()

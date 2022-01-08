@@ -9,6 +9,10 @@ const typeRoomApi = {
         return axiosClient.get('/typeRoom', { params:{...params, onlyDelete: true }})
     },
 
+    getStatistics: (params) => {
+        return axiosClient.get('/typeRoom/statistics', { params })
+    },
+
     get: (id) => {
         return axiosClient.get(`/typeRoom/${id}`)
     },

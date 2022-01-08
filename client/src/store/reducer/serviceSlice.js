@@ -12,6 +12,11 @@ export const getAllDelete = createAsyncThunk('service/getAllDelete', async (filt
     return response
 });
 
+export const getStatistics = createAsyncThunk('service/getStatistics', async (filter) => {
+    const response = await serviceApi.getStatistics(filter)
+    return response
+});
+
 export const addService = createAsyncThunk('service/addService', async (serviceForm) => {
     const response = await serviceApi.add(serviceForm)
     return response
@@ -47,11 +52,10 @@ const serviceSlice = createSlice({
     initialState: {
         serviceLoading: false,
         services: null,
-        service: null
+        service: null,
+        statistics: null
     },
-    reducers: {
-
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder.addCase(getAll.pending, (state, action) => {
             state.serviceLoading = true;
@@ -73,6 +77,15 @@ const serviceSlice = createSlice({
                 state.services = action.payload.services;
             } else {
                 state.services = null;
+            }
+        })
+        builder.addCase(getStatistics.fulfilled, (state, action) => {
+            state.serviceLoading = false;
+            if (action.payload.success) {
+                console.log(action.payload.statistics)
+                state.statistics = action.payload.statistics;
+            } else {
+                state.statistics = null;
             }
         })
         builder.addCase(deleteService.pending, (state, action) => {

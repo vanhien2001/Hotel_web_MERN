@@ -9,6 +9,10 @@ const bookingApi = {
         return axiosClient.get('/booking', { params:{...params, onlyDelete: true } })
     },
 
+    getAllWithDelete: (params) => {
+        return axiosClient.get('/booking', { params:{...params, withDelete: true } })
+    },
+
     get: (id) => {
         return axiosClient.get(`/booking/${id}`)
     },

@@ -1,4 +1,5 @@
 const TypeRoom = require('../models/TypeRoom');
+const Booking = require('../models/Booking');
 const mongoose = require('mongoose');
 const typeRoomValidator = require('../Validator/TypeRoom')
 
@@ -135,6 +136,52 @@ class TypeRoomController {
             res.json({ success: true, messages: 'Restore successfully' })
         } catch (error) {
             res.status(500).json({ success: false, messages: 'Interval server error' })
+        }
+    }
+
+    async statistics(req, res) {
+        const { year } = req.query
+        try {
+            const statistics = await Booking.aggregate([
+                {
+                    $match: {
+                        deleted: { $ne: true }
+                    }
+                },
+                { $set: { year: {$year: "$depart"}}},
+                {
+                    $match: {
+                        year: parseInt(year) || (new Date()).getFullYear()
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "rooms",
+                        localField: "room",
+                        foreignField: "_id",
+                        as: "room"
+                    }
+                },
+                { $unwind: '$room' },
+                {
+                    $group: {
+                        _id: "$room.typeRoom",
+                        totalPrice: { $sum: "$room.price"}
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "typerooms",
+                        localField: "_id",
+                        foreignField: "_id",
+                        as: "typeRoom"
+                    }
+                },
+                { $unwind: '$typeRoom' },
+            ])
+            res.json({ success: true, statistics })
+        } catch (error) {
+            res.status(500).json({ success: false, messages: error.message })
         }
     }
 }

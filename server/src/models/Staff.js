@@ -5,8 +5,9 @@ const mongoose_delete = require('mongoose-delete');
 const Staff = new Schema(
     {
         position:{
-            type: String,
+            type: Schema.Types.ObjectId,
             require: true,
+            ref: 'jobs',
         },
         salary:{
             type: Number,

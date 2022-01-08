@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import clsx from 'clsx';
 import { userSelector, changeInfor, load } from "../../../../store/reducer/userSlice";
 import styles from "./Infor.module.scss";
 
 const Infor = () => {
     const { user } = useSelector(userSelector);
-    const history = useHistory();
     const dispatch = useDispatch();
     const [userInfor, setUserInfor] = useState(user);
     const [edit, setEdit] = useState(false);

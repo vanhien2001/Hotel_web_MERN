@@ -14,6 +14,7 @@ $secondary_color: #c19b77;
             margin-bottom: 20px;
             img{
                 width: 100%;
+                border-radius: 5px;
             }
         }
         .inforItem{
@@ -27,12 +28,13 @@ $secondary_color: #c19b77;
             }
             .item{
                 color: $primary_color;
-                margin-bottom: 10px;
+                margin-bottom: 20px;
                 span{
                     color: $font_color;
                 }
             }
             .btn{
+                font-size: 1.4rem;
                 outline: none;
                 border: none;
                 border-radius: 5px;
@@ -43,6 +45,21 @@ $secondary_color: #c19b77;
                 opacity: 0.9;
                 &:hover {
                     opacity: 1;
+                }
+                &.btn_cancel{
+                    background-color: #f44336;
+                }
+                &.disabled {
+                    color: $font_color;
+                    background-color: #e7e7e7;
+                    opacity: 1;
+                    cursor: default;
+                }
+                &.cancelled {
+                    color: $primary_color;
+                }
+                & ~ .btn{
+                    margin-left: 20px;
                 }
             }
         }

@@ -6,6 +6,7 @@ import Sidebar from './Sidebar/Sidebar';
 import Navbar from './Navbar/Navbar';
 import Setting from './Setting/Setting';
 import Home from './Home/Home';
+import Profile from './Content/Profile';
 import Room from './Content/Room/Room';
 import Booking from './Content/Booking/Booking';
 import Service from './Content/Service/Service';
@@ -77,7 +78,7 @@ const Dashboard = () => {
         await dispatch(getAllStaff())
         setLoading(false)
     }, [])
-    if(!['home','room','service-room','booking','service','staff','login','message','map'].includes(slug)){
+    if(!['home','room','service-room','booking','service','staff','login','message','map','profile'].includes(slug)){
         return <PageNotFound/>
     }
     else if( slug === 'login' ){
@@ -103,6 +104,7 @@ const Dashboard = () => {
                                             <Redirect to={`/dashboard/home`}/>
                                         </Route>
                                         <Route exact path={`/dashboard/home`} component={Home} />
+                                        <Route exact path={`/dashboard/profile`} component={Profile} />
                                         <Route exact path={`/dashboard/:slug-room`} component={Room} />
                                         <Route exact path={`/dashboard/:slug-service-room`} component={Room} />
                                         <Route exact path={`/dashboard/:slug-booking`} component={Booking} />
