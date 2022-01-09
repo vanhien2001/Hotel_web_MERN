@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -13,7 +13,7 @@ import {
     Tooltip,
     Title,
 } from "chart.js";
-import { Chart, Doughnut } from "react-chartjs-2";
+import { Chart, Doughnut, Bar, Line  } from "react-chartjs-2";
 import styles from "./Home.module.scss";
 import Cart from "./Cart";
 import { useStore } from "../Dashboard";
@@ -45,6 +45,10 @@ const Home = () => {
     const { bookings } = useSelector(bookingSelector);
     const { staffs } = useSelector(staffSelector);
 
+    const [year, setYear] = useState(2021);
+    const [year2, setYear2] = useState(2021);
+    const [year3, setYear3] = useState(2021);
+
     let servicesExtra
     if(services){
         servicesExtra = services.filter(service => service.extraService)
@@ -53,10 +57,19 @@ const Home = () => {
     useEffect(() => {
         dispatch(getAll());
         dispatch(getAllService());
-        dispatch(getStatistics({ year: 2021 }));
-        dispatch(getStatisticsTypeRoom({ year: 2021 }));
-        dispatch(getStatisticsService({ year: 2021 }));
     }, []);
+
+    useEffect(() => {
+        dispatch(getStatistics({ year: year }));
+    }, [year]);
+
+    useEffect(() => {
+        dispatch(getStatisticsService({ year: year2 }));
+    }, [year2]);
+
+    useEffect(() => {
+        dispatch(getStatisticsTypeRoom({ year: year3 }));
+    }, [year3]);
 
     return (
         <>
@@ -112,7 +125,7 @@ const Home = () => {
                             <div className="col l-3 c-12">
                                 <Cart color={'#0dcaf0'} icon={'fas fa-dollar-sign'} title={'Total Revenue'} value={new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(bookings.reduce((value, booking)=> value + booking.totalPrice, 0)*1000)}/>
                             </div>
-                            <div className="col l-8 c-12">
+                            {/* <div className="col l-8 c-12">
                                 <div className={styles.charContainer}> 
                                     <div
                                         className={clsx(
@@ -199,6 +212,74 @@ const Home = () => {
                                         />
                                     </div>
                                 </div>
+                            </div> */}
+                            <div className="col l-8 c-12">
+                                <div className={styles.charContainer}>
+                                    <div
+                                        className={clsx(
+                                            styles.cartItem,
+                                            styles.chart,
+                                            theme==="light"
+                                                ? "shadow_light"
+                                                : "shadow"
+                                        )}
+                                    >
+                                        <div className={styles.yearChoose}>
+                                            <i class="fas fa-chevron-left" onClick={() => setYear(year-1)}></i>
+                                            <span>{year}</span>
+                                            <i class="fas fa-chevron-right" onClick={() => {year < (new Date()).getFullYear() && setYear(year+1)}}></i>
+                                        </div> 
+                                        <Bar
+                                            data={{
+                                                labels: rooms.map(room => room.name),
+                                                datasets: [
+                                                    {
+                                                        label: "Số ngày được đặt", // Name the series
+                                                        data: rooms.map(room => {
+                                                            const a = statistics?.find(statistic => statistic._id?._id === room._id)
+                                                            return a?.count || 0
+                                                        }), // Specify the data values array
+                                                        fill: true,
+                                                        borderColor:
+                                                            "rgba(75, 192, 192, 1)", // Add custom color border (Line)
+                                                        backgroundColor:
+                                                            "rgba(75, 192, 192, 0.8)", // Add custom color background (Points and Fill)
+                                                        borderWidth: 3, // Specify bar border width
+                                                        yAxisID: 'B',
+                                                    },
+                                                ],
+                                            }}
+                                            options={{
+                                                plugins: {
+                                                    title: {
+                                                    display: true,
+                                                    text: 'Thống kê số ngày được đặt của các phòng',
+                                                    },
+                                                    tooltip: {
+                                                        callbacks: {
+                                                            footer: (tooltipItems) => {
+                                                            let type
+                                                            let day = 0;
+                                                            tooltipItems.forEach(function(tooltipItem) {
+                                                                type = tooltipItem.dataset.type
+                                                                day += tooltipItem.parsed.y;
+                                                            });
+                                                            return 'Số ngày được đặt: ' + day;
+                                                            },
+                                                        }
+                                                    }
+                                                },
+                                                scales: {
+                                                    B: {
+                                                        type: 'linear',
+                                                        position: 'left',
+                                                        suggestedMax: 20
+                                                    }
+                                                },
+                                            }}
+                                        />
+                                    </div>
+                                </div>
                             </div>
                             <div className="col l-4 c-12">
                                 <div className={styles.charContainer}>
@@ -211,6 +292,11 @@ const Home = () => {
                                                 : "shadow"
                                         )}
                                     >
+                                        <div className={styles.yearChoose}>
+                                            <i class="fas fa-chevron-left" onClick={() => setYear2(year2-1)}></i>
+                                            <span>{year2}</span>
+                                            <i class="fas fa-chevron-right" onClick={() => {year2 < (new Date()).getFullYear() && setYear2(year2+1)}}></i>
+                                        </div> 
                                         <Doughnut
                                             data={{
                                                 labels: servicesExtra?.map(index => index.name),
@@ -276,7 +362,76 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col l-4 c-12 l-o-8">
+                            <div className="col l-8 c-12">
+                                <div className={styles.charContainer}> 
+                                    <div
+                                        className={clsx(
+                                            styles.cartItem,
+                                            styles.chart,
+                                            theme==="light"
+                                                ? "shadow_light"
+                                                : "shadow"
+                                        )}
+                                    >
+                                        <div className={styles.yearChoose}>
+                                            <i class="fas fa-chevron-left" onClick={() => setYear(year-1)}></i>
+                                            <span>{year}</span>
+                                            <i class="fas fa-chevron-right" onClick={() => {year < (new Date()).getFullYear() && setYear(year+1)}}></i>
+                                        </div> 
+                                        <Line
+                                            data={{
+                                                labels: rooms.map(room => room.name),
+                                                datasets: [
+                                                    {
+                                                        type: 'line',
+                                                        label: "Doanh thu",
+                                                        data: rooms.map(room => {
+                                                            const a = statistics?.find(statistic => statistic._id?._id === room._id)
+                                                            return (a?.count || 0)*room.price
+                                                        }),
+                                                        fill: true,
+                                                        borderColor:
+                                                            "rgba(255, 99, 132, 1)", 
+                                                        backgroundColor:
+                                                            "rgba(255, 99, 132, 0.8)", 
+                                                        borderWidth: 1,
+                                                        yAxisID: 'A',
+                                                    },
+                                                ],
+                                            }}
+                                            options={{
+                                                plugins: {
+                                                    title: {
+                                                    display: true,
+                                                    text: 'Thống kê doanh thu các phòng',
+                                                    },
+                                                    tooltip: {
+                                                        callbacks: {
+                                                            footer: (tooltipItems) => {
+                                                            let type
+                                                            let price = 0;
+        
+                                                            tooltipItems.forEach(function(tooltipItem) {
+                                                                type = tooltipItem.dataset.type
+                                                                price += tooltipItem.parsed.y;
+                                                            });
+                                                            return 'Doanh thu: ' + priceFormat(price);
+                                                            },
+                                                        }
+                                                    }
+                                                },
+                                                scales: {
+                                                    A: {
+                                                        type: 'linear',
+                                                        position: 'left',
+                                                    },
+                                                },
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col l-4 c-12">
                                 <div className={styles.charContainer}>  
                                     <div
                                         className={clsx(
@@ -287,6 +442,11 @@ const Home = () => {
                                                 : "shadow"
                                         )}
                                     >
+                                        <div className={styles.yearChoose}>
+                                            <i class="fas fa-chevron-left" onClick={() => setYear3(year3-1)}></i>
+                                            <span>{year3}</span>
+                                            <i class="fas fa-chevron-right" onClick={() => {year3 < (new Date()).getFullYear() && setYear3(year3+1)}}></i>
+                                        </div> 
                                         <Doughnut
                                             data={{
                                                 labels: typeRoom?.map(index => index.name),

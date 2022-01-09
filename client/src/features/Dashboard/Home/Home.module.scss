@@ -79,11 +79,24 @@ $btn_color: #3f51b5;
             align-items: stretch;
         }
         .chart {
+            position: relative;
             margin-top: 50px;
             align-self: stretch;
             flex: 1;
             &.chart2{
                 margin-top: 0px;
+            }
+            .yearChoose{
+                position: absolute;
+                font-size: 1.6rem;
+                right: 20px;
+                top: 20px;
+                span{
+                    margin: 0 10px;;
+                }
+                i{
+                    cursor: pointer;
+                }
             }
         }
     }
