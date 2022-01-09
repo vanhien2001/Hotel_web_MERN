@@ -68,7 +68,7 @@ const Message = () => {
     }
 
     useEffect(() => {
-        setSocket(io("http://localhost:5000"))
+        setSocket(io(process.env.REACT_APP_API_URL || "http://192.168.1.128:5000"))
         dispatch(getConversation())
     }, [])
 

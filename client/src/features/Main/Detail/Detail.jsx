@@ -111,7 +111,7 @@ const Detail = ({ bookingForm, setbookingForm, numberDay }) => {
                             <i className="fas fa-star"></i>
                         </span>
                         <img
-                            src={"http://localhost:5000" + room.images[0]}
+                            src={(process.env.REACT_APP_API_URL || "http://192.168.1.128:5000") + room.images[0]}
                             alt=""
                         />
                         <div className={styles.roomDetail}>
@@ -257,7 +257,7 @@ const Detail = ({ bookingForm, setbookingForm, numberDay }) => {
                                                       <SwiperSlide>
                                                           <img
                                                               src={
-                                                                  "http://localhost:5000" +
+                                                                (process.env.REACT_APP_API_URL || "http://192.168.1.128:5000") +
                                                                   image
                                                               }
                                                               alt=""

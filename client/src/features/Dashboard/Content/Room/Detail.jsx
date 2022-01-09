@@ -16,7 +16,7 @@ const Detail = ({ room }) => {
     return (
         <div className={clsx(styles.detail,{[styles.light]: theme === "light"}, theme === "light" ? 'shadow_light' : 'shadow')}>
             <div className={styles.header}>
-                <img src={"http://192.168.1.128:5000" + room.images[0]} alt="" />
+                <img src={(process.env.REACT_APP_API_URL || "http://192.168.1.128:5000") + room.images[0]} alt="" />
                 <div className={styles.title}>
                     <div className={styles.name}>
                         {room.name}

@@ -42,8 +42,8 @@ const RoomCart = () => {
                             <i className='fas fa-star'></i>
                             <i className='fas fa-star'></i>
                         </span>
-                        {/* <img src={(process.env.REACT_APP_API_URL || "http://192.168.1.128:5000") + room.images[0]} alt='' /> */}
-                        <img src={"http://192.168.1.128:5000" + room.images[0]} alt='' />
+                        <img src={(process.env.REACT_APP_API_URL || "http://192.168.1.128:5000") + room.images[0]} alt='' />
+                        {/* <img src={"http://192.168.1.128:5000" + room.images[0]} alt='' /> */}
                         <div className={styles.roomDetail}>
                             <div className={styles.roomName}>{room.name.toUpperCase()}</div>
                             <div className={styles.roomInfo}>

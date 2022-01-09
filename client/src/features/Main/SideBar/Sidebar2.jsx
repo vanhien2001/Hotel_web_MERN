@@ -17,7 +17,7 @@ const Sidebar2 = () => {
             <>
                 <div className={styles.sidebar + " " + styles.sidebar2}>
                     <span className={styles.roomName}>{room.name}</span>
-                    <img src={"http://192.168.1.128:5000" + room.images[0]} alt='img' />
+                    <img src={(process.env.REACT_APP_API_URL || "http://192.168.1.128:5000") + room.images[0]} alt='img' />
                     <div className={styles.title}>YOUR RESERVATION</div>
                     <div className={styles.sidebarInfor}>
                         <div className='grid'>
