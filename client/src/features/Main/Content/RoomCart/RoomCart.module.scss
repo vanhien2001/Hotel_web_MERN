@@ -8,6 +8,16 @@ $secondary_color: #c19b77;
     z-index: 1;
     border: 1px solid rgba(193, 155, 119, 0.2);
     animation: showRoom 0.4s linear;
+    &.room2{
+        display: flex;
+        img{
+            flex: 1;
+        }
+        .roomDetail{
+            flex: 1;
+            padding: 0 20px;
+        }
+    }
     img{
         width: 100%;
         height: 250px;
@@ -36,6 +46,13 @@ $secondary_color: #c19b77;
             span{
                 margin: 0 20px 0 10px;
             }
+        }
+        .roomDesc{
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 72px;
         }
         button{
             font-weight: bold;

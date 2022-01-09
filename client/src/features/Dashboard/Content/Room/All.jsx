@@ -18,6 +18,7 @@ import DeleteConfirm from '../../Confirm/Delete';
 import handleSort from '../../../../util/sort';
 import styles from "../All.module.scss";
 import Detail from './Detail';
+import { priceFormat } from "../../../../util/dataFormat";
 
 const All = () => {
     const { theme, deleteConfirm, setDeleteConfirm } = useStore()
@@ -112,7 +113,7 @@ const All = () => {
         if(rooms.length > 0) {
             data = rooms.map((room) => {
                 return (
-                    <tr key={room._id} style={{cursor: 'pointer'}} onClick={() => setDetail({show: true, room})}>
+                    <tr key={room._id}>
                         <td>
                             <input
                                 type='checkbox'
@@ -121,12 +122,12 @@ const All = () => {
                                 value={room._id}
                             />
                         </td>
-                        <td>{room.name}</td>
-                        <td>{room.typeRoom.name}</td>
-                        <td>{room.description.length > 30 ? room.description.slice(0, 30) + '...' : room.description}</td>
+                        <td style={{cursor: 'pointer'}} onClick={() => setDetail({show: true, room})}>{room.name}</td>
+                        <td style={{cursor: 'pointer'}} onClick={() => setDetail({show: true, room})}>{room.typeRoom.name}</td>
+                        <td style={{cursor: 'pointer'}} onClick={() => setDetail({show: true, room})}>{room.description.length > 30 ? room.description.slice(0, 30) + '...' : room.description}</td>
                         <td>{room.size}</td>
                         <td>{room.bed}</td>
-                        <td>{room.price}</td>
+                        <td>{priceFormat(room.price)}</td>
                         <td>
                             {showDelete ? 
                                 <button title='Restore' className={styles.restoreBtn} onClick={() => handleRestoreRoom(room._id)}>Restore</button> :
@@ -175,7 +176,7 @@ const All = () => {
                 )}
                 {(edit.show || detail.show) && (
                     <div className={styles.modal} onClick={(e) => closeModal(e)}>
-                        <div className={clsx(styles.modalContainer, theme === "light" ? 'shadow_light' : 'shadow')}>
+                        <div className={clsx(styles.modalContainer)}>
                             <i title='Close' className={clsx('fas fa-times', styles.btnClose)} onClick={(e) => closeModal(e)}></i>
                             {edit.show ? <Add room={edit.room} setEdit={setEdit} setMessagesAll={setMessages} edit={true} /> : <Detail room={detail.room}/>}
                         </div>
@@ -201,23 +202,25 @@ const All = () => {
                         }
                     </div>
                     <div className={styles.headerRight}>
-                        <div
-                            title='New'
-                            className={styles.icon}
-                            onClick={() => setEdit({ show: true, room: null })}
-                        >
-                            <i className='fas fa-plus'></i>
-                        </div>
-                        <div title='Refresh' className={styles.icon} onClick={() => dispatch(getAll())}>
-                            <i className='fas fa-redo'></i>
-                        </div>
                         {showDelete ? 
                             <div title='Back' className={styles.icon} onClick={() => {dispatch(getAll()); setShowDelete(false)}}>
                                 <i className="fas fa-arrow-alt-circle-left"></i>
                             </div> :
-                            <div title='Trash' className={styles.icon} onClick={() => {dispatch(getAllDelete()); setShowDelete(true)}}>
-                                <i className="fas fa-trash"></i>
-                            </div> 
+                            <>
+                                <div
+                                    title='New'
+                                    className={styles.icon}
+                                    onClick={() => setEdit({ show: true, room: null })}
+                                >
+                                    <i className='fas fa-plus'></i>
+                                </div>
+                                <div title='Refresh' className={styles.icon} onClick={() => dispatch(getAll())}>
+                                    <i className='fas fa-redo'></i>
+                                </div>
+                                <div title='Trash' className={styles.icon} onClick={() => {dispatch(getAllDelete()); setShowDelete(true)}}>
+                                    <i className="fas fa-trash"></i>
+                                </div> 
+                            </>
                         }
                     </div>
                 </div>
@@ -233,10 +236,10 @@ const All = () => {
                         </th>
                         <th width="15%"><div><span onClick={() => setSort(handleSort(sort, "name"))}>Name {sort && sort.field === 'name' ? sort.value === 1 ? <i className="fas fa-sort-amount-down-alt"></i> : <i className="fas fa-sort-amount-up"></i> : ''}</span></div></th>
                         <th width="20%"><div><span onClick={() => setSort(handleSort(sort, "typeRoom.name"))}>Type Room {sort && sort.field === 'typeRoom.name' ? sort.value === 1 ? <i className="fas fa-sort-amount-down-alt"></i> : <i className="fas fa-sort-amount-up"></i> : ''}</span></div></th>
-                        <th width="30%"><div><span onClick={() => setSort(handleSort(sort, "description"))}>Description {sort && sort.field === 'description' ? sort.value === 1 ? <i className="fas fa-sort-amount-down-alt"></i> : <i className="fas fa-sort-amount-up"></i> : ''}</span></div></th>
+                        <th width="25%"><div><span onClick={() => setSort(handleSort(sort, "description"))}>Description {sort && sort.field === 'description' ? sort.value === 1 ? <i className="fas fa-sort-amount-down-alt"></i> : <i className="fas fa-sort-amount-up"></i> : ''}</span></div></th>
                         <th width="5%"><div><span onClick={() => setSort(handleSort(sort, "size"))}>Size {sort && sort.field === 'size' ? sort.value === 1 ? <i className="fas fa-sort-amount-down-alt"></i> : <i className="fas fa-sort-amount-up"></i> : ''}</span></div></th>
                         <th width="5%"><div><span onClick={() => setSort(handleSort(sort, "bed"))}>Bed {sort && sort.field === 'bed' ? sort.value === 1 ? <i className="fas fa-sort-amount-down-alt"></i> : <i className="fas fa-sort-amount-up"></i> : ''}</span></div></th>
-                        <th width="10%"><div><span onClick={() => setSort(handleSort(sort, "price"))}>Price {sort && sort.field === 'price' ? sort.value === 1 ? <i className="fas fa-sort-amount-down-alt"></i> : <i className="fas fa-sort-amount-up"></i> : ''}</span></div></th>
+                        <th width="15%"><div><span onClick={() => setSort(handleSort(sort, "price"))}>Price {sort && sort.field === 'price' ? sort.value === 1 ? <i className="fas fa-sort-amount-down-alt"></i> : <i className="fas fa-sort-amount-up"></i> : ''}</span></div></th>
                         <th width="10%"><span>Action</span></th>
                     </tr>
                     {roomLoading ? 

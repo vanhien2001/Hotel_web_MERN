@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import clsx from 'clsx';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import queryString from 'query-string';
@@ -33,7 +34,7 @@ const RoomCart = () => {
         data = rooms.map(room => {
             return (
                 <div key={room._id} className={`col ${viewGrid ? 'l-6' : 'l-12'} c-12`}>
-                    <div className={styles.room}>
+                    <div className={clsx(styles.room, {[styles.room2]: !viewGrid})}>
                         <span className={styles.ranking}>
                             {room.name.toUpperCase()}
                             <i className='fas fa-star'></i>
@@ -101,6 +102,7 @@ const RoomCart = () => {
                 skip: parseInt(filterA.skip),
                 limit: parseInt(filterA.limit),
                 services: filterA.services || [],
+                typeRoom: filterA.typeRoom || [],
                 sort: filterA ? JSON.parse(filterA.sort ? filterA.sort[0] : null) : null,
             })
             setbookingForm({
@@ -113,6 +115,7 @@ const RoomCart = () => {
                 const date = new Date();
                 date.setDate(date.getDate() + 1);
                 return {
+                    typeRoom: [],
                     services: [],
                     price: 300,
                     sort: null,

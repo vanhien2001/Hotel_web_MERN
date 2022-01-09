@@ -35,7 +35,7 @@ $btn_color: #3f51b5;
             top: 15px;
             font-size: 2.5rem;
             cursor: pointer;
-            opacity: 0.8;
+            opacity: 0.9;
                 &:hover{
                     opacity: 1;
                 }
@@ -47,7 +47,7 @@ $btn_color: #3f51b5;
         .icon{
             i{
                 font-size: 12rem;
-                color: rgb(214, 29, 29);
+                color: #f44336;
             }
         }
         .text{
@@ -65,14 +65,14 @@ $btn_color: #3f51b5;
                 border-radius: 5px;
                 padding: 10px 20px;
                 background-color: $btn_color;
-                opacity: 0.8;
+                opacity: 0.9;
                 cursor: pointer;
                 width: 45%;
                 &:hover{
                     opacity: 1;
                 }
                 &:first-child{
-                    background-color: rgb(214, 29, 29);
+                    background-color: #f44336;
                 }
             }
         }

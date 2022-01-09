@@ -61,10 +61,6 @@ const Add_service = ({ edit, service, setEdit, setMessagesAll }) => {
         });
     };
 
-    useEffect(() => {
-        dispatch(getAll());
-    }, []);
-
     return (
         <>
             { !service && messages && <Alert success={messages.success} messages={messages.messages}/>}

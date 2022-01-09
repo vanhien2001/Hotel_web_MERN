@@ -48,10 +48,19 @@ $btn_color: #3f51b5;
                                 margin-right: 10px;
                             }
                         }
+                        &.choose{
+                            background-color: #f0f3fb;
+                        }
+                        &:hover {
+                            background-color: #f0f3fb;
+                        }
                     }
                     .menu {
                         .detail {
                             color: #232b3e;
+                            &:hover {
+                                background-color: #f0f3fb;
+                            }
                         }
                     }
                 }
@@ -132,8 +141,11 @@ $btn_color: #3f51b5;
                             margin-right: 10px;
                         }
                     }
+                    &.choose{
+                        background-color: rgba(16, 19, 28, 0.6);
+                    }
                     &:hover {
-                        background-color: rgba(16, 19, 28, 0.3);
+                        background-color: rgba(16, 19, 28, 0.6);
                     }
                 }
                 .menu {
@@ -145,7 +157,7 @@ $btn_color: #3f51b5;
                         padding: 10px 30px;
                         cursor: pointer;
                         &:hover {
-                            background-color: rgba(16, 19, 28, 0.3);
+                            background-color: rgba(16, 19, 28, 0.6);
                         }
                     }
                 }

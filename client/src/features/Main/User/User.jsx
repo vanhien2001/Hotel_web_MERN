@@ -18,7 +18,7 @@ const User = () => {
         <div className={styles.account}>
             <div className="grid wide">
                 <div className="row">
-                    <div className="col l-3">
+                    <div className="col l-3 c-12">
                         <div className={styles.sidebar}>
                             <div className={styles.sidebarHeader}>
                                 <img src="/Img/avatar.png" alt="" />
@@ -50,7 +50,7 @@ const User = () => {
                             </Link>
                         </div>
                     </div>
-                    <div className="col l-8 l-o-1">
+                    <div className="col l-8 l-o-1 c-12">
                         <div className={styles.content}>
                             <Switch>
                                 <Route exact path={`/account/infor`} component={Infor}/>

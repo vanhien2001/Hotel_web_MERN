@@ -21,6 +21,16 @@ const Navbar = () => {
         openSetting,
     } = useStore();
 
+    const toggleFullScreen = () => {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+        }
+      }
+
     return (
         <>
             <div
@@ -41,7 +51,7 @@ const Navbar = () => {
                 ></i>
                 <div className={styles.navbarList}>
                     <div className={styles.navbarItem}>
-                        <i title="Full view" className="fas fa-expand"></i>
+                        <i title="Full view" className="fas fa-expand" onClick={() => toggleFullScreen()}></i>
                     </div>
                     <div className={styles.navbarItem}>
                         <i title="Notify" className="far fa-bell"></i>

@@ -49,6 +49,23 @@ const Content = () => {
     });
     const [viewGrid, setViewGrid] = useState(true);
     let [filter, setFilter] = useState({});
+    const typeRoomChoose = (e) => {
+        if (e.target.checked) {
+            filter.typeRoom.push(e.target.value);
+            setFilter({
+                ...filter,
+                typeRoom: filter.typeRoom,
+            });
+        } else {
+            let index = filter.typeRoom.indexOf(e.target.value);
+            filter.typeRoom.splice(index, 1);
+            setFilter({
+                ...filter,
+                typeRoom: filter.typeRoom,
+            });
+        }
+    };
+
     const serviceChoose = (e) => {
         if (e.target.checked) {
             filter.services.push(e.target.value);
@@ -82,7 +99,8 @@ const Content = () => {
         setFilter,
         bookingForm,
         setbookingForm,
-        serviceChoose
+        serviceChoose,
+        typeRoomChoose
     }
     
     const [skipRender, setSkipRender] = useState(true)

@@ -55,10 +55,6 @@ const Add_position = ({ edit, job, setEdit, setMessagesAll }) => {
         });
     };
 
-    useEffect(() => {
-        dispatch(getAll());
-    }, []);
-
     return (
         <>
             { !job && messages && <Alert success={messages.success} messages={messages.messages}/>}

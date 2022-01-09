@@ -4,6 +4,7 @@ const argon2 = require('argon2')
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose');
 const staffValidator = require('../Validator/Staff')
+const {registerValidator} = require('../Validator/User')
 
 class StaffController {
     async showAll(req, res) {
@@ -178,7 +179,7 @@ class StaffController {
     }
 
     async store(req, res) {
-        const { error } = staffValidator({position: req.body.position, salary: req.body.salary})
+        const { error } = staffValidator({salary: req.body.salary})
         if( error ) return res.status(400).json({success: false, messages: error.details[0].message })
         try {
             const staff = await User.findOne({ username: req.body.username })
@@ -198,9 +199,15 @@ class StaffController {
 
     async update(req, res) {
         const { id } = req.params
+        const user = {...req.body};
+        delete user.position;
+        delete user.salary;
+        delete user.idUser;
         if (!id) return res.status(401).json({ success: false, messages: 'Missing id' })
-        const { error } = staffValidator({position: req.body.position, salary: req.body.salary})
+        const { error } = registerValidator(user)
         if( error ) return res.status(400).json({success: false, messages: error.details[0].message })
+        const { error1 } = staffValidator({salary: req.body.salary})
+        if( error1 ) return res.status(400).json({success: false, messages: error.details[0].message })
         try {
             const staff = await Staff.updateOne({ _id: id }, { position: req.body.position, salary: req.body.salary }, { new: true })
             if (!staff) return res.json({ success: false, messages: "Can't update staff" })

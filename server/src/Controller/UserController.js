@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Staff = require('../models/Staff');
 const argon2 = require('argon2')
 const jwt = require('jsonwebtoken')
 const { loginValidator, registerValidator } = require('../Validator/User')
@@ -26,6 +27,10 @@ class UserController {
             const user = await User.findOne({username});
             if(!user){
                 return res.status(400).json({success: false, messages:'Incorrect username or password'})
+            }
+            const staff = await Staff.findOne({idUser: user._id});
+            if(staff){
+                return res.status(400).json({success: false, messages:'Cannot login by staff account'})
             }
             const passowrdvalid = await argon2.verify(user.password,password)
             if(!passowrdvalid){ 

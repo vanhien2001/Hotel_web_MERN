@@ -41,7 +41,14 @@ $secondary_color: #c19b77;
             }
         }
     }
-    .content{
-        
+}
+@media screen and (max-width: 739px) {
+    .account{
+        .sidebar{
+            text-align: center;
+        }
+        .content{
+            margin-top: 40px;
+        }
     }
 }

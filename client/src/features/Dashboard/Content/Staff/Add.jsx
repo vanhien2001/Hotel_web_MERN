@@ -199,7 +199,7 @@ const Add = ({ edit, staff, setEdit, setMessagesAll }) => {
                             <div className='col l-6 c-12 m-6'>
                                 <div className={styles.formControl}>
                                     <input
-                                        type='number'
+                                        type='text'
                                         name='phone'
                                         placeholder=' '
                                         value={staffForm.phone}
@@ -211,7 +211,7 @@ const Add = ({ edit, staff, setEdit, setMessagesAll }) => {
                             <div className='col l-6 c-12 m-6'>
                                 <div className={styles.formControl}>
                                     <input
-                                        type='number'
+                                        type='text'
                                         name='cmnd'
                                         placeholder=' '
                                         value={staffForm.cmnd}

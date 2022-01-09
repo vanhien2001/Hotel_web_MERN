@@ -4,6 +4,20 @@
     box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: #878788;
+    transition: all 3s linear;
+}
+
 html {
     font-size: 62.5%;
     font-family: "Poppins", sans-serif;

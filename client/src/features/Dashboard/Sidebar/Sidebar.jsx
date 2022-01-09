@@ -67,8 +67,8 @@ const Sidebar = () => {
                         >
                             <Link
                                 to="/dashboard/home"
-                                onClick={() => toggleMenu("")}
-                                className={styles.name}
+                                onClick={() => toggleMenu("home")}
+                                className={clsx(styles.name, {[styles.choose]: menu === "home"})}
                             >
                                 <div>
                                     <i className="fas fa-home"></i>Home
@@ -82,7 +82,7 @@ const Sidebar = () => {
                         >
                             <div
                                 onClick={() => toggleMenu("room")}
-                                className={styles.name}
+                                className={clsx(styles.name, {[styles.choose]: menu === "room" && isOpen})}
                             >
                                 <div>
                                     <i className="fas fa-bed"></i>Room
@@ -127,7 +127,7 @@ const Sidebar = () => {
                         >
                             <div
                                 onClick={() => toggleMenu("booking")}
-                                className={styles.name}
+                                className={clsx(styles.name, {[styles.choose]: menu === "booking" && isOpen})}
                             >
                                 <div>
                                     <i className="far fa-file-alt"></i>Booking
@@ -160,7 +160,7 @@ const Sidebar = () => {
                         >
                             <div
                                 onClick={() => toggleMenu("service")}
-                                className={styles.name}
+                                className={clsx(styles.name, {[styles.choose]: menu === "service" && isOpen})}
                             >
                                 <div>
                                     <i className="fas fa-concierge-bell"></i>
@@ -194,7 +194,7 @@ const Sidebar = () => {
                         >
                             <div
                                 onClick={() => toggleMenu("staff")}
-                                className={styles.name}
+                                className={clsx(styles.name, {[styles.choose]: menu === "staff" && isOpen})}
                             >
                                 <div>
                                     <i className="fas fa-male"></i>Staff
@@ -234,8 +234,8 @@ const Sidebar = () => {
                         >
                             <Link
                                 to="/dashboard/message"
-                                onClick={() => toggleMenu("")}
-                                className={styles.name}
+                                onClick={() => toggleMenu("message")}
+                                className={clsx(styles.name, {[styles.choose]: menu === "message"})}
                             >
                                 <div>
                                     <i className="fas fa-comments"></i>Message
@@ -247,8 +247,8 @@ const Sidebar = () => {
                         >
                             <Link
                                 to="/dashboard/map"
-                                onClick={() => toggleMenu("")}
-                                className={styles.name}
+                                onClick={() => toggleMenu("map")}
+                                className={clsx(styles.name, {[styles.choose]: menu === "map"})}
                             >
                                 <div>
                                     <i className="fas fa-map-marked-alt"></i>Map

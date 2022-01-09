@@ -6,8 +6,8 @@ const registeSchema = Joi.object({
     firstname: Joi.string().required(),
     lastname: Joi.string().required(),
     address: Joi.string(),
-    cmnd: Joi.string().length(12).required(),
-    phone: Joi.string().length(10).required(),
+    cmnd: Joi.string().pattern(/^[0-9]+$/).length(12).messages({'string.pattern.base': `Cmnd invalid.`}).required(),
+    phone: Joi.string().pattern(/^[0-9]+$/).length(10).messages({'string.pattern.base': `Phone invalid.`}).required(),
     gender: Joi.string().required(),
     email: Joi.string().email({tlds: { allow: ['com', 'net'] }}).required(),
 })

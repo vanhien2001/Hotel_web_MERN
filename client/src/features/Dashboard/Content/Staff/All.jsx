@@ -166,7 +166,7 @@ const All = () => {
                 )}
                 {edit.show && (
                     <div className={styles.modal} onClick={(e) => closeModal(e)}>
-                        <div className={clsx(styles.modalContainer, theme === "light" ? 'shadow_light' : 'shadow')}>
+                        <div className={clsx(styles.modalContainer)}>
                             <i title='Close' className={clsx('fas fa-times', styles.btnClose)} onClick={(e) => closeModal(e)}></i>
                             <Add staff={edit.staff} setEdit={setEdit} setMessagesAll={setMessages} edit={true} />
                         </div>
@@ -192,23 +192,25 @@ const All = () => {
                         }
                     </div>
                     <div className={styles.headerRight}>
-                        <div
-                            title='New'
-                            className={styles.icon}
-                            onClick={() => setEdit({ show: true, staff: null })}
-                        >
-                            <i className='fas fa-plus'></i>
-                        </div>
-                        <div title='Refresh' className={styles.icon} onClick={() => dispatch(getAll())}>
-                            <i className='fas fa-redo'></i>
-                        </div>
                         {showDelete ? 
                             <div title='Back' className={styles.icon} onClick={() => {dispatch(getAll()); setShowDelete(false)}}>
                                 <i className="fas fa-arrow-alt-circle-left"></i>
                             </div> :
-                            <div title='Trash' className={styles.icon} onClick={() => {dispatch(getAllDelete()); setShowDelete(true)}}>
-                                <i className="fas fa-trash"></i>
-                            </div> 
+                            <>
+                                <div
+                                    title='New'
+                                    className={styles.icon}
+                                    onClick={() => setEdit({ show: true, staff: null })}
+                                >
+                                    <i className='fas fa-plus'></i>
+                                </div>
+                                <div title='Refresh' className={styles.icon} onClick={() => dispatch(getAll())}>
+                                    <i className='fas fa-redo'></i>
+                                </div>
+                                <div title='Trash' className={styles.icon} onClick={() => {dispatch(getAllDelete()); setShowDelete(true)}}>
+                                    <i className="fas fa-trash"></i>
+                                </div> 
+                            </>
                         }
                     </div>
                 </div>

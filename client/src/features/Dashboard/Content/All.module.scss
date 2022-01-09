@@ -42,7 +42,7 @@ $btn_color: #3f51b5;
                 top: 15px;
                 font-size: 2.5rem;
                 cursor: pointer;
-                opacity: 0.8;
+                opacity: 0.9;
                 &:hover{
                     opacity: 1;
                 }
@@ -94,7 +94,7 @@ $btn_color: #3f51b5;
         .icon {
             color: #fff;
             background-color: $btn_color;
-            opacity: 0.8;
+            opacity: 0.9;
             border-radius: 50%;
             height: 40px;
             width: 40px;
@@ -131,7 +131,7 @@ $btn_color: #3f51b5;
                     color: #fff;
                     background-color: $btn_color;
                     padding: 10px 20px;
-                    opacity: 0.8;
+                    opacity: 0.9;
                     cursor: pointer;
                     transition: all 0.2s linear;
                     &:hover {
@@ -177,7 +177,7 @@ $btn_color: #3f51b5;
                     border-radius: 50%;
                     background-color: #96a2b4;
                     cursor: pointer;
-                    opacity: 0.8;
+                    opacity: 0.9;
                     transition: all 0.3s linear;
                     &:hover{
                         opacity: 1;

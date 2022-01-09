@@ -55,10 +55,6 @@ const Add_type = ({ edit, typeRoom, setEdit, setMessagesAll }) => {
         });
     };
 
-    useEffect(() => {
-        dispatch(getAll());
-    }, []);
-
     return (
         <>
             { !typeRoom && messages && <Alert success={messages.success} messages={messages.messages}/>}

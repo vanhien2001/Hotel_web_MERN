@@ -10,8 +10,19 @@ const Calendar = ({ setShow, data, bookings }) => {
     const { bookingForm, setbookingForm } = useStore();
 
     const handleDateClick = (e) => {
-        setbookingForm({ ...bookingForm, [data]: new Date(e.dateStr) })
-        setShow(false)
+        const dateChoose = new Date(e.dateStr);
+        if(data === 'arrive'){
+            if(Math.ceil((dateChoose.getTime() - (new Date()).getTime()) / (1000 * 3600 * 24)) >= 0 && Math.ceil((dateChoose.getTime() - (bookingForm.depart.getTime())) / (1000 * 3600 * 24)) < 0){
+                setbookingForm({ ...bookingForm, [data]: new Date(e.dateStr) })
+                setShow(false)
+            }
+        }
+        if(data === 'depart'){
+            if(Math.ceil((dateChoose.getTime() - (bookingForm.arrive.getTime()) / (1000 * 3600 * 24)) > 0)){
+                setbookingForm({ ...bookingForm, [data]: new Date(e.dateStr) })
+                setShow(false)
+            }
+        }
     }
 
     return (

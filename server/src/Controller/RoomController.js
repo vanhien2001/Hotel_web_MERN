@@ -117,6 +117,15 @@ class RoomController {
                         }
                     )
                 }
+                if (filter.typeRoom && filter.typeRoom.length > 0) {
+                    aggregate.push(
+                        {
+                            $match: {
+                                typeRoom: { $in: filter.typeRoom.map(index => mongoose.Types.ObjectId(index)) }
+                            }
+                        }
+                    )
+                }
                 aggregate = aggregate.concat(deFault)
                 if (filter.search) {
                     aggregate.push(

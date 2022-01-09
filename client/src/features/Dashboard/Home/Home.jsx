@@ -101,7 +101,7 @@ const Home = () => {
                     <div className="grid">
                         <div className="row">
                             <div className="col l-3 c-12">
-                                <Cart color={'#6f42c1'} icon={'fas fa-copy'} title={'Total Booking'} value={bookings.length}/>
+                                <Cart color={'#6f42c1'} icon={'fas fa-copy'} title={'Total Booking'} value={bookings?.length}/>
                             </div>
                             <div className="col l-3 c-12">
                                 <Cart color={'#fd7e14'} icon={'fas fa-bed'} title={'Rooms Available'} value={quantity}/>
@@ -140,7 +140,7 @@ const Home = () => {
                                                             "rgba(255, 99, 132, 1)", 
                                                         backgroundColor:
                                                             "rgba(255, 99, 132, 0.8)", 
-                                                        borderWidth: 1, 
+                                                        borderWidth: 1,
                                                         yAxisID: 'A',
                                                     },
                                                     {
@@ -161,6 +161,29 @@ const Home = () => {
                                                 ],
                                             }}
                                             options={{
+                                                plugins: {
+                                                    title: {
+                                                    display: true,
+                                                    text: 'Thống kê số ngày được đặt và doanh thu các phòng',
+                                                    },
+                                                    tooltip: {
+                                                        callbacks: {
+                                                            footer: (tooltipItems) => {
+                                                            let type
+                                                            let price = 0;
+        
+                                                            tooltipItems.forEach(function(tooltipItem) {
+                                                                type = tooltipItem.dataset.type
+                                                                price += tooltipItem.parsed.y;
+                                                            });
+                                                            if(type === 'line'){
+                                                                return 'Doanh thu: ' + priceFormat(price);
+                                                            }
+                                                            return 'Số ngày được đặt: ' + price;
+                                                            },
+                                                        }
+                                                    }
+                                                },
                                                 scales: {
                                                     A: {
                                                         type: 'linear',
@@ -171,29 +194,6 @@ const Home = () => {
                                                         position: 'right',
                                                         suggestedMax: 20
                                                     }
-                                                },
-                                                plugins: {
-                                                    title: {
-                                                    display: true,
-                                                    text: 'Thống kê số ngày được đặt và doanh thu các phòng',
-                                                    },
-                                                    tooltip: {
-                                                    callbacks: {
-                                                        footer: (tooltipItems) => {
-                                                        let type
-                                                        let price = 0;
-    
-                                                        tooltipItems.forEach(function(tooltipItem) {
-                                                            type = tooltipItem.dataset.type
-                                                            price += tooltipItem.parsed.y;
-                                                        });
-                                                        if(type === 'line'){
-                                                            return 'Doanh thu: ' + priceFormat(price);
-                                                        }
-                                                        return 'Số ngày được đặt: ' + price;
-                                                        },
-                                                    }
-                                                }
                                                 },
                                             }}
                                         />
