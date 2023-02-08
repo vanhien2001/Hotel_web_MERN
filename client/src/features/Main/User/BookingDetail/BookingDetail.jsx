@@ -57,7 +57,7 @@ const BookingDetail = () => {
                 <div className="grid">
                     <div className="row">
                         <div className="col l-5 c-6">
-                            <img src={"http://192.168.1.128:5000" + booking.room.images[0]} alt="" />
+                            <img src={(process.env.REACT_APP_API_URL || "http://192.168.1.128:5000") + booking.room.images[0]} alt="" />
                         </div>
                         <div className="col l-7 c-6">
                             <div className={styles.name}>

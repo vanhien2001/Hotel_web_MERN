@@ -33,7 +33,7 @@ const BookingInfor = () => {
                         <div className={styles.itemImg}>
                             <img
                                 src={
-                                    "http://192.168.1.128:5000" +
+                                    (process.env.REACT_APP_API_URL || "http://192.168.1.128:5000") +
                                     booking.room.images[0]
                                 }
                                 alt=""
