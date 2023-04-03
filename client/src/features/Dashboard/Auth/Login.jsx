@@ -9,7 +9,7 @@ const Login = () => {
     const dispatch = useDispatch()
     const { staffLoading, staff } = useSelector(staffSelector);
     const [loginForm, setLoginForm] = useState({
-        username: 'admin',
+        username: 'staff',
         password: '123'
     });
     const [messages, setMessages] = useState(null);
